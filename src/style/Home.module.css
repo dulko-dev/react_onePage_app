@@ -1,0 +1,24 @@
+@import-normailize;
+
+.nav {
+  height: 100vh;
+  width: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #171717;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav > svg {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.nav > svg:hover {
+  opacity: 0.6;
+  transition: opacity 0.5s;
+}
