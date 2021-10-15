@@ -1,12 +1,10 @@
-@import-normailize;
-
 .nav {
   height: 100vh;
   width: 100px;
-  position: fixed;
+  position: relative;
   left: 0;
   top: 0;
-  background-color: #171717;
+  background-color: #485696;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -22,3 +20,9 @@
   opacity: 0.6;
   transition: opacity 0.5s;
 }
+
+.home {
+  display: flex;
+}
+
+

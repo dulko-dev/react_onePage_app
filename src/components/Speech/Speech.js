@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import Home from "../Home";
+
+import styles from "../../style/Speech.module.css";
 
 const Speech = () => {
-    return (
-        <div>
-            Speech
-        </div>
-    )
-}
+  return (
+    <div className={styles.speech}>
+      <Home />
+      <div>Speech</div>;
+    </div>
+  );
+};
 
-export default Speech
+export default Speech;
