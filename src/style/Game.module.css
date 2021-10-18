@@ -1,4 +1,7 @@
 .game {
-    display: flex;
-    
+  display: flex;
+  width: 100%;
+  background: #403b4a;
+  background: -webkit-linear-gradient(to right, #e7e9bb, #403b4a);
+  background: linear-gradient(to right, #e7e9bb, #403b4a);
 }

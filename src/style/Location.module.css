@@ -1,4 +1,36 @@
 .location {
-    display: flex;
-    
+  display: flex;
+  background: #1d2b64;
+  background: -webkit-linear-gradient(to right, #f8cdda, #1d2b64);
+  background: linear-gradient(to right, #f8cdda, #1d2b64);
+  width: 100%;
+}
+
+.content {
+  height: 100vh;
+  width: calc(100vw - 100px);
+}
+
+.buttonLocation {
+  position: relative;
+  height: 50%;
+}
+
+.button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 25px;
+  display: inline-block;
+  border: none;
+  border-radius: 5%;
+  font-size: 3em;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.map {
+  height: 50%;
+  text-align: center;
+  font-size:3em;
 }

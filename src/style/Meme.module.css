@@ -1,4 +1,7 @@
 .meme {
-    display: flex;
-    
+  display: flex;
+  width: 100%;
+  background: #536976;
+  background: -webkit-linear-gradient(to right, #292e49, #536976);
+  background: linear-gradient(to right, #292e49, #536976);
 }

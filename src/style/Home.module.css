@@ -11,12 +11,12 @@
   align-items: center;
 }
 
-.nav > svg {
+.nav a > svg {
   opacity: 1;
   transition: opacity 0.5s;
 }
 
-.nav > svg:hover {
+.nav a > svg:hover {
   opacity: 0.6;
   transition: opacity 0.5s;
 }
@@ -24,5 +24,3 @@
 .home {
   display: flex;
 }
-
-
