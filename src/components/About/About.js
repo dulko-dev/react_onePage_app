@@ -3,6 +3,7 @@ import Home from "../Home";
 import styles from "../../style/About.module.css";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import { MdOutlineContactPage } from "react-icons/md";
+import arrayIcons from "./icons";
 
 const About = () => {
   return (
@@ -21,6 +22,7 @@ const About = () => {
                   href="https://linkedin.com/in/kamil-duliniec"
                   alt="linkedin"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <span>Linkedin</span>
                   <BsLinkedin />
@@ -29,12 +31,18 @@ const About = () => {
                   href="https://github.com/dulko-dev"
                   alt="github profile"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <span>GitHub</span>
 
                   <BsGithub />
                 </a>
-                <a href="https://dulko-dev.com" alt="website" target="_blank">
+                <a
+                  href="https://dulko-dev.com"
+                  alt="website"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <span>Website</span>
                   <MdOutlineContactPage />
                 </a>
@@ -47,7 +55,19 @@ const About = () => {
             <div className={`${styles.front} ${styles.frontSkill}`}>
               <p>Skills</p>
             </div>
-            <div className={styles.back}>Skills</div>
+            <div className={styles.back}>
+              <h2 className={styles.titleIcon}>Skills</h2>
+              <div className={styles.iconsContent}>
+                {arrayIcons.map((icon) => {
+                  return (
+                    <div className={styles.iconImage} key={icon.id}>
+                      <img src={icon.img} alt={icon.title} />
+                      <span>{icon.title}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.contentCard}>
