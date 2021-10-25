@@ -2,7 +2,7 @@ import React from "react";
 import Home from "../Home";
 import styles from "../../style/About.module.css";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { MdWebAsset } from "react-icons/md";
+import { MdOutlineContactPage } from "react-icons/md";
 
 const About = () => {
   return (
@@ -15,23 +15,30 @@ const About = () => {
               <p>About me</p>
             </div>
             <div className={styles.back}>
-              <a
-                href="https://linkedin.com/in/kamil-duliniec"
-                alt="linkedin"
-                target="_blank"
-              >
-                <BsLinkedin />
-              </a>
-              <a
-                href="https://github.com/dulko-dev"
-                alt="github profile"
-                target="_blank"
-              >
-                <BsGithub />
-              </a>
-              <a href="https://dulko-dev.com" alt="website" target="_blank">
-                <MdWebAsset />
-              </a>
+              <div className={styles.back_content}>
+                <h2>You can catch me here</h2>
+                <a
+                  href="https://linkedin.com/in/kamil-duliniec"
+                  alt="linkedin"
+                  target="_blank"
+                >
+                  <span>Linkedin</span>
+                  <BsLinkedin />
+                </a>
+                <a
+                  href="https://github.com/dulko-dev"
+                  alt="github profile"
+                  target="_blank"
+                >
+                  <span>GitHub</span>
+
+                  <BsGithub />
+                </a>
+                <a href="https://dulko-dev.com" alt="website" target="_blank">
+                  <span>Website</span>
+                  <MdOutlineContactPage />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -62,4 +69,3 @@ export default About;
 // Photo by <a href="https://unsplash.com/@wimvanteinde?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Wim van 't Einde</a> on <a href="https://unsplash.com/s/photos/chess?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 //Photo by <a href="https://unsplash.com/@quincoetzee?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Quinton Coetzee</a> on <a href="https://unsplash.com/s/photos/coding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 // Photo by <a href="https://unsplash.com/@nordwood?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NordWood Themes</a> on <a href="https://unsplash.com/s/photos/dark-brick-wall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  

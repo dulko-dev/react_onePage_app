@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Henny+Penny&display=swap");
 
+:root {
+  --fontCharacter1: "Festive", cursive;
+  --fontCharacter2: "Henny Penny", cursive;
+}
+
 .about {
   position: relative;
   background: #1f1c2c;
@@ -35,7 +40,7 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.8s linear;
 }
 
 .front {
@@ -47,7 +52,7 @@
 }
 
 .card:hover {
-  transform: rotateY(-180deg);
+  transform: rotateY(180deg);
 }
 
 .front.frontAbout {
@@ -57,8 +62,8 @@
 }
 
 .front p {
-  font-family: "Festive", cursive;
-  font-family: "Henny Penny", cursive;
+  font-family: var(--fontCharacter1);
+  font-family: var(--fontCharacter2);
   color: white;
   font-size: 2.5em;
   position: absolute;
@@ -106,6 +111,72 @@
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.5);
   z-index: -1;
+}
+
+.back_content {
+  font-family: var(--fontCharacter1);
+  font-family: var(--fontCharacter2);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 10% repeat(3, 1fr) 10%;
+  grid-template-rows: 2fr 3fr;
+  justify-items: center;
+}
+
+.back_content h2 {
+  font-size: 2.8em;
+  text-align: center;
+  grid-column: 2/5;
+  grid-row: 1/2;
+  align-self: center;
+}
+
+.back_content a {
+  font-size: 3.7em;
+  color: #00b95c;
+  margin-top: 40px;
+  position: relative;
+}
+
+a span {
+  position: absolute;
+  top: -40px;
+  left: -40%;
+  font-size: 20px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  color: transparent;
+}
+
+.back_content svg {
+  transition: filter 0.5s ease-in-out;
+}
+
+.back_content svg:hover {
+  filter: drop-shadow(-1rem -1rem 0.2rem rgba(0, 0, 0, 0.5));
+  transition: filter 0.5s ease-in-out;
+}
+
+.back_content a:hover span {
+  text-shadow: 0rem 0rem 0.13rem rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.back_content a:first-of-type {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+.back_content a:nth-of-type(2) {
+  grid-row: 2/3;
+  grid-column: 3/4;
+}
+.back_content a:last-of-type {
+  grid-row: 2/3;
+  grid-column: 4/5;
 }
 
 @keyframes elevator {
