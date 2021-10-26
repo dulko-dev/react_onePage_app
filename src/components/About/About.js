@@ -1,9 +1,11 @@
 import React from "react";
 import Home from "../Home";
 import styles from "../../style/About.module.css";
+import arrowDown from "../../asset/down-arrow.png";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import { MdOutlineContactPage } from "react-icons/md";
-import arrayIcons from "./icons";
+import { icons } from "./icons";
+import { projects } from "./projects";
 
 const About = () => {
   return (
@@ -58,7 +60,7 @@ const About = () => {
             <div className={styles.back}>
               <h2 className={styles.titleIcon}>Skills</h2>
               <div className={styles.iconsContent}>
-                {arrayIcons.map((icon) => {
+                {icons.map((icon) => {
                   return (
                     <div className={styles.iconImage} key={icon.id}>
                       <img src={icon.img} alt={icon.title} />
@@ -73,9 +75,47 @@ const About = () => {
         <div className={styles.contentCard}>
           <div className={styles.card}>
             <div className={`${styles.front} ${styles.frontSpareTime}`}>
-              <p>Spare Time</p>
+              <p>Projects</p>
             </div>
-            <div className={styles.back}>Spare Time</div>
+            <div className={styles.back2}>
+              {projects.map((project, index) => {
+                return (
+                  <div className={styles.projectContent_simple} key={index}>
+                    <h3>{project.title}</h3>
+                    <ul>
+                      {project.tech.map((name, index) => (
+                        <li key={index}>
+                          <span>{name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={project.href} target="_blank" rel="noreferrer">
+                      <button className={styles.btn}>DEMO</button>
+                    </a>
+                    <div
+                      className={styles.downArrowRight}
+                      style={
+                        project.title === "Flag Countries"
+                          ? { display: "none" }
+                          : { display: "block" }
+                      }
+                    >
+                      <img alt="arrow down" src={arrowDown} />
+                    </div>
+                    <div
+                      className={styles.downArrowLeft}
+                      style={
+                        project.title === "Flag Countries"
+                          ? { display: "none" }
+                          : { display: "block" }
+                      }
+                    >
+                      <img alt="arrow down" src={arrowDown} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

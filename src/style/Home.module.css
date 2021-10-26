@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.nav a {
+  outline: none;
+}
+
 .nav a > svg {
   opacity: 1;
   transition: opacity 0.5s;

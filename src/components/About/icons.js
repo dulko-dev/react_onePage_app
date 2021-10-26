@@ -15,7 +15,7 @@ import firebase from "../../asset/Icons/firebase.png";
 import mongoDB from "../../asset/Icons/mongoDB.png";
 import redux from "../../asset/Icons/redux.png";
 
-export default [
+export const icons =  [
   {
     id: 1,
     title: "html5",
