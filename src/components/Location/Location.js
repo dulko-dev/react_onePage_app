@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Home from "../Home";
 import styles from "../../style/Location.module.css";
+import { Map, View } from "ol";
+import TileLayer from "ol/layer/Tile";
+import XYZ from "ol/source/XYZ";
+import { fromLonLat } from "ol/proj";
+
 
 const Location = () => {
   const [data, setData] = useState({
@@ -9,6 +14,25 @@ const Location = () => {
   });
   const [dataLocation, setDataLocation] = useState();
   const [visibleInfo, setVisibleInfo] = useState(false);
+  const [place, setPlace] = useState([13.689167, 47.394167]);
+  const mapElement = useRef();
+
+  useEffect(() => {
+    new Map({
+      target: mapElement.current,
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: "http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}",
+          }),
+        }),
+      ],
+      view: new View({
+        center: fromLonLat(place),
+        zoom: 9,
+      }),
+    });
+  }, []);
 
   const getLocation = (e) => {
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -42,7 +66,12 @@ const Location = () => {
               throw Error("something has gone wrong");
             }
           })
-          .then((data) => setDataLocation(data.results[0].components));
+          .then((data) => {
+            setDataLocation(data.results[0]);
+
+            console.log(data);
+          });
+
         await setVisibleInfo(true);
 
         if (setVisibleInfo) {
@@ -68,24 +97,34 @@ const Location = () => {
               <h2>Details Information</h2>
               <div className={styles.infoBlock}>
                 <p>road</p>
-                <span>{dataLocation.road}</span>
+                <span>{dataLocation.components.road}</span>
               </div>
               <div className={styles.infoBlock}>
                 <p>city</p>
-                <span>{dataLocation.city}</span>
+                <span>{dataLocation.components.city}</span>
               </div>
               <div className={styles.infoBlock}>
                 <p>city district</p>
-                <span>{dataLocation.city_district}</span>
+                <span>{dataLocation.components.city_district}</span>
               </div>
               <div className={styles.infoBlock}>
                 <p>postcode</p>
-                <span>{dataLocation.postcode}</span>
+                <span>{dataLocation.components.postcode}</span>
+              </div>
+              <div className={styles.infoBlock}>
+                <p className={styles.probablyPlace}>your probably place</p>
+                <span className={styles.place}>{dataLocation.formatted}</span>
+              </div>
+              <div className={styles.infoBlock}>
+                <p>strenght of confidence</p>
+                <span>{dataLocation.confidence}</span>
               </div>
             </div>
           )}
         </div>
-        <div className={styles.map}>Here will be map...</div>
+        <div className={styles.mapDiv}>
+          <div ref={mapElement} className={styles.map}></div>
+        </div>
       </div>
     </div>
   );
