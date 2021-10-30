@@ -8,10 +8,22 @@ const Speech = () => {
   const [textareaValue, setTextareaValue] = useState("");
   const [voicer, setVoicer] = useState("");
 
-  useEffect(() => {
-    speechSynthesis.addEventListener("voiceschanged", () => {
-      setVoices(speechSynthesis.getVoices());
+  const getVoices = () => {
+    return new Promise((resolve) => {
+      let voices = speechSynthesis.getVoices();
+      if (voices.length) {
+        resolve(voices);
+        return;
+      }
+      speechSynthesis.onvoiceschanged = () => {
+        voices = speechSynthesis.getVoices();
+        resolve(voices);
+      };
     });
+  };
+
+  useEffect(() => {
+    getVoices().then((voices) => setVoices(voices));
   }, []);
 
   const getText = () => {

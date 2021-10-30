@@ -6,7 +6,6 @@ import TileLayer from "ol/layer/Tile";
 import XYZ from "ol/source/XYZ";
 import { fromLonLat } from "ol/proj";
 
-
 const Location = () => {
   const [data, setData] = useState({
     clock: "",
@@ -14,8 +13,12 @@ const Location = () => {
   });
   const [dataLocation, setDataLocation] = useState();
   const [visibleInfo, setVisibleInfo] = useState(false);
-  const [place, setPlace] = useState([13.689167, 47.394167]);
+  const [place, setPlace] = useState([0, 0]);
+  const [zooming, setZooming] = useState(2);
   const mapElement = useRef();
+
+  console.log(place);
+  console.log(zooming);
 
   useEffect(() => {
     new Map({
@@ -29,10 +32,11 @@ const Location = () => {
       ],
       view: new View({
         center: fromLonLat(place),
-        zoom: 9,
+        zoom: zooming,
       }),
+      controls: [],
     });
-  }, []);
+  }, [place, zooming]);
 
   const getLocation = (e) => {
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -55,6 +59,7 @@ const Location = () => {
         const setTime = new Date(time).toLocaleTimeString("en-US");
         const setDate = new Date(time).toLocaleDateString("pl-PL");
         const { latitude, longitude } = pos.coords;
+        
         setData({ date: setDate, clock: setTime });
         await fetch(
           `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
@@ -68,8 +73,8 @@ const Location = () => {
           })
           .then((data) => {
             setDataLocation(data.results[0]);
-
-            console.log(data);
+            setPlace([longitude, latitude]);
+            setZooming(9);
           });
 
         await setVisibleInfo(true);
