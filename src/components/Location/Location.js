@@ -1,10 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import Home from "../Home";
 import styles from "../../style/Location.module.css";
-import { Map, View } from "ol";
+import { Map, View, Feature } from "ol";
 import TileLayer from "ol/layer/Tile";
+import VectorLayer from "ol/layer/Vector";
 import XYZ from "ol/source/XYZ";
+import VectorSource from "ol/source/Vector";
 import { fromLonLat } from "ol/proj";
+import Point from "ol/geom/Point";
+import Style from "ol/style/Style";
+import Icon from "ol/style/Icon";
+import "ol/ol.css";
 
 const Location = () => {
   const [data, setData] = useState({
@@ -20,23 +26,37 @@ const Location = () => {
   console.log(place);
   console.log(zooming);
 
-  useEffect(() => {
-    new Map({
+  const mapLayer = (lon, lat) => {
+    let map = new Map({
       target: mapElement.current,
-      layers: [
-        new TileLayer({
-          source: new XYZ({
-            url: "http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}",
-          }),
-        }),
-      ],
+      layers: [],
       view: new View({
-        center: fromLonLat(place),
-        zoom: zooming,
+        center: fromLonLat([lon, lat]),
+        zoom: 17,
+        maxZoom: 20,
       }),
       controls: [],
     });
-  }, [place, zooming]);
+
+    let tileMap = new TileLayer({
+      source: new XYZ({
+        url: "http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}",
+      }),
+    });
+
+    let vector = new VectorLayer({
+      source: new VectorSource({
+        features: [
+          new Feature({
+            geometry: new Point(fromLonLat([lon, lat])),
+          }),
+        ],
+      }),
+    });
+
+    map.addLayer(tileMap);
+    map.addLayer(vector);
+  };
 
   const getLocation = (e) => {
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -59,7 +79,7 @@ const Location = () => {
         const setTime = new Date(time).toLocaleTimeString("en-US");
         const setDate = new Date(time).toLocaleDateString("pl-PL");
         const { latitude, longitude } = pos.coords;
-        
+
         setData({ date: setDate, clock: setTime });
         await fetch(
           `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
@@ -73,6 +93,7 @@ const Location = () => {
           })
           .then((data) => {
             setDataLocation(data.results[0]);
+            mapLayer(longitude, latitude);
             setPlace([longitude, latitude]);
             setZooming(9);
           });
