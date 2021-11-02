@@ -85,6 +85,15 @@
   align-self: center;
 }
 
+.generate {
+  text-align: center;
+  padding-top:20px;
+}
+
+.generate .time {
+  font-size:1.3em;
+}
+
 .map {
   width: 100%;
   height: 100%;

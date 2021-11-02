@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Home from "../Home";
 import styles from "../../style/Location.module.css";
 import { Map, View, Feature } from "ol";
@@ -8,9 +8,6 @@ import XYZ from "ol/source/XYZ";
 import VectorSource from "ol/source/Vector";
 import { fromLonLat } from "ol/proj";
 import Point from "ol/geom/Point";
-import Style from "ol/style/Style";
-import Icon from "ol/style/Icon";
-import "ol/ol.css";
 
 const Location = () => {
   const [data, setData] = useState({
@@ -19,12 +16,7 @@ const Location = () => {
   });
   const [dataLocation, setDataLocation] = useState();
   const [visibleInfo, setVisibleInfo] = useState(false);
-  const [place, setPlace] = useState([0, 0]);
-  const [zooming, setZooming] = useState(2);
   const mapElement = useRef();
-
-  console.log(place);
-  console.log(zooming);
 
   const mapLayer = (lon, lat) => {
     let map = new Map({
@@ -94,8 +86,6 @@ const Location = () => {
           .then((data) => {
             setDataLocation(data.results[0]);
             mapLayer(longitude, latitude);
-            setPlace([longitude, latitude]);
-            setZooming(9);
           });
 
         await setVisibleInfo(true);
@@ -144,6 +134,12 @@ const Location = () => {
               <div className={styles.infoBlock}>
                 <p>strenght of confidence</p>
                 <span>{dataLocation.confidence}</span>
+              </div>
+              <div className={styles.generate}>
+                <p>Generate at</p>
+                <span className={styles.time}>
+                  {data.date} {data.clock}
+                </span>
               </div>
             </div>
           )}
