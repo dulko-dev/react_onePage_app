@@ -1,0 +1,22 @@
+.menu {
+    width: 100%;
+    align-self: center;
+}
+
+.menuSelect {
+    height:80vh;
+    margin:auto;
+    width:600px;
+    background: black;
+}
+
+.menuSelectContent {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.menuSelect > h2 {
+    text-align: center;
+    color: #aaaaaa;
+}

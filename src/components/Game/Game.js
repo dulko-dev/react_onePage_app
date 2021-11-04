@@ -7,10 +7,14 @@ import styles from "../../style/Game.module.css";
 const Game = () => {
   const [welcomeScreen, setWelcomeScreen] = useState(true);
 
+  const startGame = () => {
+    setWelcomeScreen(false);
+  };
+
   return (
     <div className={styles.game}>
       <Home />
-      {welcomeScreen ? <Menu /> : <Live />}
+      {welcomeScreen ? <Menu startGame={startGame} /> : <Live />}
     </div>
   );
 };
