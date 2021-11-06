@@ -6,6 +6,9 @@ import styles from "../../style/Game.module.css";
 
 const Game = () => {
   const [welcomeScreen, setWelcomeScreen] = useState(true);
+  const [score, setScore] = useState(0);
+  const [player, setPlayer] = useState("");
+  const [data, setData] = useState("");
 
   const startGame = () => {
     setWelcomeScreen(false);
@@ -14,7 +17,11 @@ const Game = () => {
   return (
     <div className={styles.game}>
       <Home />
-      {welcomeScreen ? <Menu startGame={startGame} /> : <Live />}
+      {welcomeScreen ? (
+        <Menu startGame={startGame} setPlayer={setPlayer} setData={setData} />
+      ) : (
+        <Live score={score} setScore={setScore} player={player} data={data} />
+      )}
     </div>
   );
 };

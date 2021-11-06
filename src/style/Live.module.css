@@ -3,6 +3,31 @@
   align-self: center;
 }
 
+.infoUser {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100vw - 100px);
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoUser div:first-child {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left:50px;
+}
+
+.infoUser div:last-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right:50px;
+}
+
 .gameContent {
   box-sizing: border-box;
   margin: auto;

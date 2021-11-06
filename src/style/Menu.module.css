@@ -16,7 +16,37 @@
     
 }
 
-.menuSelect > h2 {
-    text-align: center;
-    color: #aaaaaa;
+form {
+    height:100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
 }
+
+.selectOptions {
+    display: flex;
+}
+
+.contentSelect {
+    width: 100%;
+    align-self: center;
+}
+
+select {
+    width: 100%;
+    padding:10px 0;
+}
+
+.addButton {
+    padding: 10px 15px;
+}
+
+
+.poolQuestion {
+    width: 70%;
+    height:200px;
+    background-color: aliceblue;
+    align-self: center;
+}
+

@@ -1,32 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../style/Live.module.css";
 
-const Game = () => {
-  const [data, setData] = useState("");
-
-  const handleFetch = async () => {
-    const url1 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url2 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url3 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url4 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-
-    const promiseAll = await Promise.all([
-      fetch(url1),
-      fetch(url2),
-      fetch(url3),
-      fetch(url4),
-    ]);
-    const data = await promiseAll.map((data) => data.json());
-    const final = Promise.all(data);
-    final.then((el) => setData(el));
-  };
+const Game = ({ score, setScore, player, data }) => {
+  
+  console.log(data)
 
   return (
     <div className={styles.gameLive}>
+      <div className={styles.infoUser}>
+        <div>
+          {player} : {score}
+        </div>
+        <div>time: 00:00</div>
+      </div>
       <div className={styles.gameContent}>
         <div className={styles.categoryContent}>
           <div className={styles.category}>Chemia</div>
@@ -37,31 +23,30 @@ const Game = () => {
         <div className={styles.questionContent}>
           <div className={styles.questionRow}>
             {data &&
-              data[0].results.map((question) => (
-                <div className={styles.question}>{question.question}</div>
+              data[0].results.map((question,index) => (
+                <div className={styles.question} key={index}>{question.question}</div>
               ))}
           </div>
           <div className={styles.questionRow}>
             {data &&
-              data[1].results.map((question) => (
-                <div className={styles.question}>{question.question}</div>
+              data[1].results.map((question,index) => (
+                <div className={styles.question} key={index}>{question.question}</div>
               ))}
           </div>
           <div className={styles.questionRow}>
             {data &&
-              data[2].results.map((question) => (
-                <div className={styles.question}>{question.question}</div>
+              data[2].results.map((question,index) => (
+                <div className={styles.question} key={index}>{question.question}</div>
               ))}
           </div>
           <div className={styles.questionRow}>
             {data &&
-              data[3].results.map((question) => (
-                <div className={styles.question}>{question.question}</div>
+              data[3].results.map((question,index) => (
+                <div className={styles.question} key={index}>{question.question}</div>
               ))}
           </div>
         </div>
       </div>
-      <button onClick={handleFetch}>Button</button>
     </div>
   );
 };
