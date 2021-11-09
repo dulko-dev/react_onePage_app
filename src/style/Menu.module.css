@@ -50,3 +50,9 @@ select {
     align-self: center;
 }
 
+.singleCategory {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+

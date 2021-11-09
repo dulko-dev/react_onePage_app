@@ -4,7 +4,9 @@ import styles from "../../style/Menu.module.css";
 const Menu = (props) => {
   const [categories, setCategories] = useState("");
   const [selectValue, setSelectValue] = useState("select categories");
+  const [selectId, setSelectId] = useState("");
   const [selectCategories, setSelectCategories] = useState([]);
+  const [selectCategoriesId, setSelectCategoriesId] = useState([]);
   const [error, setError] = useState("");
 
   const multipleFunction = () => {
@@ -28,6 +30,7 @@ const Menu = (props) => {
 
   const markCategory = (e) => {
     setSelectValue(e.target.value);
+    setSelectId(e.target.options[e.target.selectedIndex].dataset.id);
   };
 
   const handleAdd = (e) => {
@@ -36,18 +39,15 @@ const Menu = (props) => {
     if (selectCategories.includes(selectValue)) return;
     if (selectCategories.length < 4) {
       setSelectCategories((prev) => [...prev, selectValue]);
+      setSelectCategoriesId((prev) => [...prev, selectId]);
     }
   };
 
   const handleFetch = async () => {
-    const url1 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url2 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url3 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
-    const url4 =
-      "https://opentdb.com/api.php?amount=3&category=17&difficulty=medium&type=boolean";
+    const url1 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[0]}&difficulty=medium&type=boolean`;
+    const url2 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[1]}&difficulty=medium&type=boolean`;
+    const url3 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[2]}&difficulty=medium&type=boolean`;
+    const url4 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[3]}&difficulty=medium&type=boolean`;
 
     const promiseAll = await Promise.all([
       fetch(url1),
@@ -58,6 +58,12 @@ const Menu = (props) => {
     const data = await promiseAll.map((data) => data.json());
     const final = Promise.all(data);
     final.then((el) => props.setData(el));
+  };
+
+  const handleRemove = (event, category) => {
+    console.log(event)
+    event.preventDefault();
+    setSelectCategories(selectCategories.filter((el) => el != category));
   };
 
   return (
@@ -83,7 +89,11 @@ const Menu = (props) => {
                     {categories &&
                       categories.map((category) => {
                         return (
-                          <option key={category.id} value={category.name}>
+                          <option
+                            key={category.id}
+                            value={category.name}
+                            data-id={category.id}
+                          >
                             {category.name}
                           </option>
                         );
@@ -97,7 +107,12 @@ const Menu = (props) => {
               <div className={styles.poolQuestion}>
                 <ul>
                   {selectCategories.map((category, index) => (
-                    <li key={index}>{category}</li>
+                    <div className={styles.singleCategory} key={index}>
+                      <li>{category}</li>
+                      <button onClick={(e) => handleRemove(e, category)}>
+                        del
+                      </button>
+                    </div>
                   ))}
                 </ul>
               </div>
