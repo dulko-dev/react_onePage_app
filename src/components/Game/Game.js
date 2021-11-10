@@ -14,6 +14,9 @@ const Game = () => {
     setWelcomeScreen(false);
   };
 
+console.log(data)
+
+
   return (
     <div className={styles.game}>
       <Home />

@@ -18,14 +18,14 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  padding-left:50px;
+  padding-left: 50px;
 }
 
 .infoUser div:last-child {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding-right:50px;
+  padding-right: 50px;
 }
 
 .gameContent {
@@ -83,3 +83,4 @@
 .question:last-child {
   margin-bottom: 10px;
 }
+

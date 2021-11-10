@@ -6,13 +6,13 @@ const Menu = (props) => {
   const [selectValue, setSelectValue] = useState("select categories");
   const [selectId, setSelectId] = useState("");
   const [selectCategories, setSelectCategories] = useState([]);
-  const [selectCategoriesId, setSelectCategoriesId] = useState([]);
   const [error, setError] = useState("");
 
   const multipleFunction = () => {
     props.startGame();
     handleFetch();
   };
+
 
   useEffect(() => {
     const urlCategory = "https://opentdb.com/api_category.php";
@@ -36,24 +36,42 @@ const Menu = (props) => {
   const handleAdd = (e) => {
     e.preventDefault();
     if (selectValue === "select categories") return;
-    if (selectCategories.includes(selectValue)) return;
+    if (selectCategories.some((el) => el.value === selectValue)) return;
     if (selectCategories.length < 4) {
-      setSelectCategories((prev) => [...prev, selectValue]);
-      setSelectCategoriesId((prev) => [...prev, selectId]);
+      setSelectCategories((prev) => [
+        ...prev,
+        { value: selectValue, id: selectId },
+      ]);
     }
   };
 
   const handleFetch = async () => {
-    const url1 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[0]}&difficulty=medium&type=boolean`;
-    const url2 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[1]}&difficulty=medium&type=boolean`;
-    const url3 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[2]}&difficulty=medium&type=boolean`;
-    const url4 = `https://opentdb.com/api.php?amount=3&category=${selectCategoriesId[3]}&difficulty=medium&type=boolean`;
+    const url11 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=easy&type=boolean`;
+    const url12 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=medium&type=boolean`;
+    const url13 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=hard&type=boolean`;
+    const url21 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=easy&type=boolean`;
+    const url22 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=medium&type=boolean`;
+    const url23 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=hard&type=boolean`;
+    const url31 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=easy&type=boolean`;
+    const url32 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=medium&type=boolean`;
+    const url33 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=hard&type=boolean`;
+    const url41 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=easy&type=boolean`;
+    const url42 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=medium&type=boolean`;
+    const url43 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=hard&type=boolean`;
 
     const promiseAll = await Promise.all([
-      fetch(url1),
-      fetch(url2),
-      fetch(url3),
-      fetch(url4),
+      fetch(url11),
+      fetch(url12),
+      fetch(url13),
+      fetch(url21),
+      fetch(url22),
+      fetch(url23),
+      fetch(url31),
+      fetch(url32),
+      fetch(url33),
+      fetch(url41),
+      fetch(url42),
+      fetch(url43),
     ]);
     const data = await promiseAll.map((data) => data.json());
     const final = Promise.all(data);
@@ -61,9 +79,9 @@ const Menu = (props) => {
   };
 
   const handleRemove = (event, category) => {
-    console.log(event)
+    console.log(event);
     event.preventDefault();
-    setSelectCategories(selectCategories.filter((el) => el != category));
+    setSelectCategories(selectCategories.filter((el) => el.value != category));
   };
 
   return (
@@ -106,10 +124,10 @@ const Menu = (props) => {
               </div>
               <div className={styles.poolQuestion}>
                 <ul>
-                  {selectCategories.map((category, index) => (
-                    <div className={styles.singleCategory} key={index}>
-                      <li>{category}</li>
-                      <button onClick={(e) => handleRemove(e, category)}>
+                  {selectCategories.map((category) => (
+                    <div className={styles.singleCategory} key={category.id}>
+                      <li>{category.value}</li>
+                      <button onClick={(e) => handleRemove(e, category.value)}>
                         del
                       </button>
                     </div>
