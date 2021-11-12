@@ -4,12 +4,21 @@ import styles from "../../style/Live.module.css";
 const Game = ({ score, setScore, player, data }) => {
   const [column, setColumn] = useState("");
   const [row, setRow] = useState("");
+  const [takeScore, setTakeScore] = useState("");
+  const [time, setTime] = useState({
+    second: "",
+    minute: "",
+  });
+
 
   console.log(data);
 
   const matrix = (e) => {
     setColumn(e.target.dataset.column);
     setRow(e.target.dataset.row);
+    e.target.style.display = "none";
+    setTakeScore(e.target.children[0].innerText);
+    console.log(e.target.siblingElement)
   };
 
   const goodcolumn = (e) => {
@@ -17,8 +26,10 @@ const Game = ({ score, setScore, player, data }) => {
     const correct = e.target.innerText;
     if (correct === data[column].results[row].correct_answer) {
       e.target.style.background = "green";
+      setScore(score + Number(takeScore));
     } else {
       e.target.style.background = "red";
+      setScore(score - Number(takeScore));
     }
   };
 
@@ -27,10 +38,21 @@ const Game = ({ score, setScore, player, data }) => {
     const fail = e.target.innerText;
     if (fail === data[column].results[row].correct_answer) {
       e.target.style.background = "green";
+      setScore(score + Number(takeScore));
     } else {
       e.target.style.background = "red";
+      setScore(score - Number(takeScore));
     }
   };
+
+  function escapeHtml(text) {
+    return text
+      .replaceAll("&amp;", "&")
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&quot;", '"')
+      .replaceAll("&#039;", "'");
+  }
 
   return (
     <div className={styles.gameLive}>
@@ -42,21 +64,55 @@ const Game = ({ score, setScore, player, data }) => {
       </div>
       <div className={styles.gameContent}>
         <div className={styles.categoryContent}>
-          <div className={styles.category}>Chemia</div>
-          <div className={styles.category}>Prawo</div>
-          <div className={styles.category}>Gospodarka</div>
-          <div className={styles.category}>Sport</div>
+          <div className={styles.category}>
+            {data && data[0].response_code == 0
+              ? data[0].results[0].category
+              : "None"}
+          </div>
+          <div className={styles.category}>
+            {data && data[1].response_code == 0
+              ? data[1].results[0].category
+              : "None"}
+          </div>
+          <div className={styles.category}>
+            {data && data[2].response_code == 0
+              ? data[2].results[0].category
+              : "None"}
+          </div>
+          <div className={styles.category}>
+            {data && data[3].response_code == 0
+              ? data[3].results[0].category
+              : "None"}
+          </div>
         </div>
         <div className={styles.questionContent}>
           <div className={styles.questionRow}>
             {data &&
               data[0].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  <p data-column={0} data-row={index} onClick={matrix}>
-                    {question.question}
-                  </p>
-                  <button onClick={goodcolumn}>True</button>
-                  <button onClick={badcolumn}>False</button>
+                  {question.question === "undefined" ? (
+                    <div style={{ color: "black" }}>Sorry Memory</div>
+                  ) : (
+                    <>
+                      <div
+                        className={styles.scoreBoard}
+                        data-column={0}
+                        data-row={index}
+                        onClick={matrix}
+                      >
+                        <p className={styles.score}>
+                          {question.difficulty === "easy"
+                            ? "100"
+                            : question.difficulty === "medium"
+                            ? "200"
+                            : "300"}
+                        </p>
+                      </div>
+                      <p>{escapeHtml(question.question)}</p>
+                      <button onClick={goodcolumn}>True</button>
+                      <button onClick={badcolumn}>False</button>
+                    </>
+                  )}
                 </div>
               ))}
           </div>
@@ -64,11 +120,29 @@ const Game = ({ score, setScore, player, data }) => {
             {data &&
               data[1].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  <p data-column={1} data-row={index} onClick={matrix}>
-                    {question.question}
-                  </p>
-                  <button onClick={goodcolumn}>True</button>
-                  <button onClick={badcolumn}>False</button>
+                  {question.question === "undefined" ? (
+                    <div style={{ color: "black" }}>Sorry Memory</div>
+                  ) : (
+                    <>
+                      <div
+                        className={styles.scoreBoard}
+                        data-column={1}
+                        data-row={index}
+                        onClick={matrix}
+                      >
+                        <p className={styles.score}>
+                          {question.difficulty === "easy"
+                            ? "100"
+                            : question.difficulty === "medium"
+                            ? "200"
+                            : "300"}
+                        </p>
+                      </div>
+                      <p>{escapeHtml(question.question)}</p>
+                      <button onClick={goodcolumn}>True</button>
+                      <button onClick={badcolumn}>False</button>
+                    </>
+                  )}
                 </div>
               ))}
           </div>
@@ -76,11 +150,29 @@ const Game = ({ score, setScore, player, data }) => {
             {data &&
               data[2].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  <p data-column={2} data-row={index} onClick={matrix}>
-                    {question.question}
-                  </p>
-                  <button onClick={goodcolumn}>True</button>
-                  <button onClick={badcolumn}>False</button>
+                  {question.question === "undefined" ? (
+                    <div style={{ color: "black" }}>Sorry Memory</div>
+                  ) : (
+                    <>
+                      <div
+                        className={styles.scoreBoard}
+                        data-column={2}
+                        data-row={index}
+                        onClick={matrix}
+                      >
+                        <p className={styles.score}>
+                          {question.difficulty === "easy"
+                            ? "100"
+                            : question.difficulty === "medium"
+                            ? "200"
+                            : "300"}
+                        </p>
+                      </div>
+                      <p>{escapeHtml(question.question)}</p>
+                      <button onClick={goodcolumn}>True</button>
+                      <button onClick={badcolumn}>False</button>
+                    </>
+                  )}
                 </div>
               ))}
           </div>
@@ -88,11 +180,29 @@ const Game = ({ score, setScore, player, data }) => {
             {data &&
               data[3].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  <p data-column={3} data-row={index} onClick={matrix}>
-                    {question.question}
-                  </p>
-                  <button onClick={goodcolumn}>True</button>
-                  <button onClick={badcolumn}>False</button>
+                  {question.question === "undefined" ? (
+                    <div style={{ color: "black" }}>Sorry Memory</div>
+                  ) : (
+                    <>
+                      <div
+                        className={styles.scoreBoard}
+                        data-column={3}
+                        data-row={index}
+                        onClick={matrix}
+                      >
+                        <p className={styles.score}>
+                          {question.difficulty === "easy"
+                            ? "100"
+                            : question.difficulty === "medium"
+                            ? "200"
+                            : "300"}
+                        </p>
+                      </div>
+                      <p>{escapeHtml(question.question)}</p>
+                      <button onClick={goodcolumn}>True</button>
+                      <button onClick={badcolumn}>False</button>
+                    </>
+                  )}
                 </div>
               ))}
           </div>

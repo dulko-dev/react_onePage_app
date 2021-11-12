@@ -13,9 +13,7 @@ const Game = () => {
   const startGame = () => {
     setWelcomeScreen(false);
   };
-
-
-
+  
   return (
     <div className={styles.game}>
       <Home />

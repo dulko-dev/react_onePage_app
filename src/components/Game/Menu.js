@@ -8,7 +8,6 @@ const Menu = (props) => {
   const [selectCategories, setSelectCategories] = useState([]);
   const [error, setError] = useState("");
 
-
   useEffect(() => {
     const urlCategory = "https://opentdb.com/api_category.php";
     fetch(urlCategory)
@@ -73,7 +72,7 @@ const Menu = (props) => {
         ) : (
           <div className={styles.menuSelectContent}>
             <form>
-              <h2>Select Menu</h2>
+              <h2>Test your knowledge</h2>
               <label htmlFor="username"></label>
               <input
                 type="text"
@@ -115,7 +114,12 @@ const Menu = (props) => {
                   ))}
                 </ul>
               </div>
-              <button type="submit" onClick={handleFetch}>
+              <button
+                type="button"
+                onClick={handleFetch}
+                className={styles.buttonBattle}
+                disabled={selectCategories.length != 4}
+              >
                 Battle
               </button>
             </form>
