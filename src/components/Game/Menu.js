@@ -8,11 +8,6 @@ const Menu = (props) => {
   const [selectCategories, setSelectCategories] = useState([]);
   const [error, setError] = useState("");
 
-  const multipleFunction = () => {
-    props.startGame();
-    handleFetch();
-  };
-
 
   useEffect(() => {
     const urlCategory = "https://opentdb.com/api_category.php";
@@ -45,37 +40,23 @@ const Menu = (props) => {
     }
   };
 
-  const handleFetch = async () => {
-    const url11 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=easy&type=boolean`;
-    const url12 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=medium&type=boolean`;
-    const url13 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[0].id}&difficulty=hard&type=boolean`;
-    const url21 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=easy&type=boolean`;
-    const url22 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=medium&type=boolean`;
-    const url23 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[1].id}&difficulty=hard&type=boolean`;
-    const url31 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=easy&type=boolean`;
-    const url32 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=medium&type=boolean`;
-    const url33 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[2].id}&difficulty=hard&type=boolean`;
-    const url41 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=easy&type=boolean`;
-    const url42 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=medium&type=boolean`;
-    const url43 = `https://opentdb.com/api.php?amount=1&category=${selectCategories[3].id}&difficulty=hard&type=boolean`;
+  const handleFetch = async (e) => {
+    e.preventDefault();
+    const url1 = `https://opentdb.com/api.php?amount=3&category=${selectCategories[0].id}&type=boolean`;
+    const url2 = `https://opentdb.com/api.php?amount=3&category=${selectCategories[1].id}&type=boolean`;
+    const url3 = `https://opentdb.com/api.php?amount=3&category=${selectCategories[2].id}&type=boolean`;
+    const url4 = `https://opentdb.com/api.php?amount=3&category=${selectCategories[3].id}&type=boolean`;
 
     const promiseAll = await Promise.all([
-      fetch(url11),
-      fetch(url12),
-      fetch(url13),
-      fetch(url21),
-      fetch(url22),
-      fetch(url23),
-      fetch(url31),
-      fetch(url32),
-      fetch(url33),
-      fetch(url41),
-      fetch(url42),
-      fetch(url43),
+      fetch(url1),
+      fetch(url2),
+      fetch(url3),
+      fetch(url4),
     ]);
     const data = await promiseAll.map((data) => data.json());
     const final = Promise.all(data);
     final.then((el) => props.setData(el));
+    props.startGame();
   };
 
   const handleRemove = (event, category) => {
@@ -134,7 +115,7 @@ const Menu = (props) => {
                   ))}
                 </ul>
               </div>
-              <button type="submit" onClick={multipleFunction}>
+              <button type="submit" onClick={handleFetch}>
                 Battle
               </button>
             </form>

@@ -14,7 +14,6 @@ const Game = () => {
     setWelcomeScreen(false);
   };
 
-console.log(data)
 
 
   return (
