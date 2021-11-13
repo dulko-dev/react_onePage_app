@@ -5,20 +5,18 @@ const Game = ({ score, setScore, player, data }) => {
   const [column, setColumn] = useState("");
   const [row, setRow] = useState("");
   const [takeScore, setTakeScore] = useState("");
+  const [active, setActive] = useState(true);
   const [time, setTime] = useState({
     second: "",
     minute: "",
   });
-
-
-  console.log(data);
 
   const matrix = (e) => {
     setColumn(e.target.dataset.column);
     setRow(e.target.dataset.row);
     e.target.style.display = "none";
     setTakeScore(e.target.children[0].innerText);
-    console.log(e.target.siblingElement)
+    setActive(!active);
   };
 
   const goodcolumn = (e) => {
@@ -27,9 +25,19 @@ const Game = ({ score, setScore, player, data }) => {
     if (correct === data[column].results[row].correct_answer) {
       e.target.style.background = "green";
       setScore(score + Number(takeScore));
+      if (e.target.style.background === "green") {
+        e.target.disabled = true;
+        e.target.nextElementSibling.disabled = true;
+        setActive(!active);
+      }
     } else {
       e.target.style.background = "red";
       setScore(score - Number(takeScore));
+      if (e.target.style.background === "red") {
+        e.target.disabled = true;
+        e.target.nextElementSibling.disabled = true;
+        setActive(!active);
+      }
     }
   };
 
@@ -39,9 +47,19 @@ const Game = ({ score, setScore, player, data }) => {
     if (fail === data[column].results[row].correct_answer) {
       e.target.style.background = "green";
       setScore(score + Number(takeScore));
+      if (e.target.style.background === "green") {
+        e.target.disabled = true;
+        e.target.previousElementSibling.disabled = true;
+      }
+      setActive(!active);
     } else {
       e.target.style.background = "red";
       setScore(score - Number(takeScore));
+      if (e.target.style.background === "red") {
+        e.target.disabled = true;
+        e.target.previousElementSibling.disabled = true;
+      }
+      setActive(!active);
     }
   };
 
@@ -98,7 +116,7 @@ const Game = ({ score, setScore, player, data }) => {
                         className={styles.scoreBoard}
                         data-column={0}
                         data-row={index}
-                        onClick={matrix}
+                        onClick={active ? matrix : undefined}
                       >
                         <p className={styles.score}>
                           {question.difficulty === "easy"
@@ -128,7 +146,7 @@ const Game = ({ score, setScore, player, data }) => {
                         className={styles.scoreBoard}
                         data-column={1}
                         data-row={index}
-                        onClick={matrix}
+                        onClick={active ? matrix : undefined}
                       >
                         <p className={styles.score}>
                           {question.difficulty === "easy"
@@ -158,7 +176,7 @@ const Game = ({ score, setScore, player, data }) => {
                         className={styles.scoreBoard}
                         data-column={2}
                         data-row={index}
-                        onClick={matrix}
+                        onClick={active ? matrix : undefined}
                       >
                         <p className={styles.score}>
                           {question.difficulty === "easy"
@@ -188,7 +206,7 @@ const Game = ({ score, setScore, player, data }) => {
                         className={styles.scoreBoard}
                         data-column={3}
                         data-row={index}
-                        onClick={matrix}
+                        onClick={active ? matrix : undefined}
                       >
                         <p className={styles.score}>
                           {question.difficulty === "easy"
