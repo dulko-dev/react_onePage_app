@@ -5,3 +5,41 @@
   background: -webkit-linear-gradient(to right, #292e49, #536976);
   background: linear-gradient(to right, #292e49, #536976);
 }
+
+.container {
+  width: calc(100vw - 100px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentText {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  border: 1px solid blue;
+  box-sizing: border-box;
+}
+
+.setupCanvas {
+  position: relative;
+  margin: auto;
+  border: 1px solid yellow;
+  width: calc(100% - 200px);
+  height: calc(100% - 500px);
+}
+
+.setupCanvas h2 {
+  text-align: center;
+}
+
+label {
+  width: 100%;
+}
+
+.imageCanvas {
+  margin: auto;
+  width: calc(50% - 200px);
+  height: calc(100vh - 200px);
+  border: 1px solid red;
+}
