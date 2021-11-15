@@ -11,6 +11,8 @@ const Game = ({ score, setScore, player, data }) => {
     minute: "",
   });
 
+  console.log(data);
+
   const matrix = (e) => {
     setColumn(e.target.dataset.column);
     setRow(e.target.dataset.row);
@@ -105,124 +107,136 @@ const Game = ({ score, setScore, player, data }) => {
         </div>
         <div className={styles.questionContent}>
           <div className={styles.questionRow}>
-            {data &&
+            {data && data[0].response_code === 1 ? (
+              <div className={styles.emptyQuestions}>
+                <p>Sorry we don't have enough questions in this category</p>
+              </div>
+            ) : (
+              data &&
               data[0].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  {question.question === "undefined" ? (
-                    <div style={{ color: "black" }}>Sorry Memory</div>
-                  ) : (
-                    <>
-                      <div
-                        className={styles.scoreBoard}
-                        data-column={0}
-                        data-row={index}
-                        onClick={active ? matrix : undefined}
-                      >
-                        <p className={styles.score}>
-                          {question.difficulty === "easy"
-                            ? "100"
-                            : question.difficulty === "medium"
-                            ? "200"
-                            : "300"}
-                        </p>
-                      </div>
-                      <p>{escapeHtml(question.question)}</p>
-                      <button onClick={goodcolumn}>True</button>
-                      <button onClick={badcolumn}>False</button>
-                    </>
-                  )}
+                  <>
+                    <div
+                      className={styles.scoreBoard}
+                      data-column={0}
+                      data-row={index}
+                      onClick={active ? matrix : undefined}
+                    >
+                      <p className={styles.score}>
+                        {question.difficulty === "easy"
+                          ? "100"
+                          : question.difficulty === "medium"
+                          ? "200"
+                          : "300"}
+                      </p>
+                    </div>
+                    <p>{escapeHtml(question.question)}</p>
+                    {console.log(question)}
+                    <button onClick={goodcolumn}>True</button>
+                    <button onClick={badcolumn}>False</button>
+                  </>
                 </div>
-              ))}
+              ))
+            )}
           </div>
           <div className={styles.questionRow}>
-            {data &&
+            {data && data[1].response_code === 1 ? (
+              <div className={styles.emptyQuestions}>
+                <p>Sorry we don't have enough questions in this category</p>
+              </div>
+            ) : (
+              data &&
               data[1].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  {question.question === "undefined" ? (
-                    <div style={{ color: "black" }}>Sorry Memory</div>
-                  ) : (
-                    <>
-                      <div
-                        className={styles.scoreBoard}
-                        data-column={1}
-                        data-row={index}
-                        onClick={active ? matrix : undefined}
-                      >
-                        <p className={styles.score}>
-                          {question.difficulty === "easy"
-                            ? "100"
-                            : question.difficulty === "medium"
-                            ? "200"
-                            : "300"}
-                        </p>
-                      </div>
-                      <p>{escapeHtml(question.question)}</p>
-                      <button onClick={goodcolumn}>True</button>
-                      <button onClick={badcolumn}>False</button>
-                    </>
-                  )}
+                  <>
+                    <div
+                      className={styles.scoreBoard}
+                      data-column={1}
+                      data-row={index}
+                      onClick={active ? matrix : undefined}
+                    >
+                      <p className={styles.score}>
+                        {question.difficulty === "easy"
+                          ? "100"
+                          : question.difficulty === "medium"
+                          ? "200"
+                          : "300"}
+                      </p>
+                    </div>
+                    <p>{escapeHtml(question.question)}</p>
+                    {console.log(question)}
+                    <button onClick={goodcolumn}>True</button>
+                    <button onClick={badcolumn}>False</button>
+                  </>
                 </div>
-              ))}
+              ))
+            )}
           </div>
           <div className={styles.questionRow}>
-            {data &&
+            {data && data[2].response_code === 1 ? (
+              <div className={styles.emptyQuestions}>
+                <p>Sorry we don't have enough questions in this category</p>
+              </div>
+            ) : (
+              data &&
               data[2].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  {question.question === "undefined" ? (
-                    <div style={{ color: "black" }}>Sorry Memory</div>
-                  ) : (
-                    <>
-                      <div
-                        className={styles.scoreBoard}
-                        data-column={2}
-                        data-row={index}
-                        onClick={active ? matrix : undefined}
-                      >
-                        <p className={styles.score}>
-                          {question.difficulty === "easy"
-                            ? "100"
-                            : question.difficulty === "medium"
-                            ? "200"
-                            : "300"}
-                        </p>
-                      </div>
-                      <p>{escapeHtml(question.question)}</p>
-                      <button onClick={goodcolumn}>True</button>
-                      <button onClick={badcolumn}>False</button>
-                    </>
-                  )}
+                  <>
+                    <div
+                      className={styles.scoreBoard}
+                      data-column={2}
+                      data-row={index}
+                      onClick={active ? matrix : undefined}
+                    >
+                      <p className={styles.score}>
+                        {question.difficulty === "easy"
+                          ? "100"
+                          : question.difficulty === "medium"
+                          ? "200"
+                          : "300"}
+                      </p>
+                    </div>
+                    <p>{escapeHtml(question.question)}</p>
+                    {console.log(question)}
+                    <button onClick={goodcolumn}>True</button>
+                    <button onClick={badcolumn}>False</button>
+                  </>
                 </div>
-              ))}
+              ))
+            )}
           </div>
           <div className={styles.questionRow}>
-            {data &&
+            {data && data[3].response_code === 1 ? (
+              <div className={styles.emptyQuestions}>
+                <p>Sorry we don't have enough questions in this category</p>
+              </div>
+            ) : (
+              data &&
               data[3].results.map((question, index) => (
                 <div className={styles.question} key={index}>
-                  {question.question === "undefined" ? (
-                    <div style={{ color: "black" }}>Sorry Memory</div>
-                  ) : (
-                    <>
-                      <div
-                        className={styles.scoreBoard}
-                        data-column={3}
-                        data-row={index}
-                        onClick={active ? matrix : undefined}
-                      >
-                        <p className={styles.score}>
-                          {question.difficulty === "easy"
-                            ? "100"
-                            : question.difficulty === "medium"
-                            ? "200"
-                            : "300"}
-                        </p>
-                      </div>
-                      <p>{escapeHtml(question.question)}</p>
-                      <button onClick={goodcolumn}>True</button>
-                      <button onClick={badcolumn}>False</button>
-                    </>
-                  )}
+                  <>
+                    <div
+                      className={styles.scoreBoard}
+                      data-column={3}
+                      data-row={index}
+                      onClick={active ? matrix : undefined}
+                    >
+                      <p className={styles.score}>
+                        {question.difficulty === "easy"
+                          ? "100"
+                          : question.difficulty === "medium"
+                          ? "200"
+                          : "300"}
+                      </p>
+                    </div>
+                    <p>{escapeHtml(question.question)}</p>
+                    {console.log(question)}
+                    <button onClick={goodcolumn}>True</button>
+                    <button onClick={badcolumn}>False</button>
+                  </>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
       </div>

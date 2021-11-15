@@ -94,7 +94,24 @@
 }
 
 .score {
-  color: pink;
+  color: #ffffff;
   font-size: 2em;
   pointer-events: none;
+}
+
+.emptyQuestions {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.emptyQuestions p {
+  font-size: 2em;
+  color: #ffffff;
+  text-align: center;
 }

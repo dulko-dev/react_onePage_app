@@ -59,7 +59,6 @@ const Menu = (props) => {
   };
 
   const handleRemove = (event, category) => {
-    console.log(event);
     event.preventDefault();
     setSelectCategories(selectCategories.filter((el) => el.value != category));
   };
