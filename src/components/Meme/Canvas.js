@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
 const Canvas = () => {
-    return (
-        <div>
-            Canvas
-        </div>
-    )
-}
+  const [canvas, setCanvas] = useState("");
 
-export default Canvas
+  useEffect(() => {
+    setCanvas(document.getElementById("canvas"));
+  }, []);
+
+  return {
+    canvas,
+    renderCanvas: <canvas id="canvas"></canvas>,
+  };
+};
+
+export default Canvas;
