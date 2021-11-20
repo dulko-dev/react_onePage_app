@@ -55,6 +55,14 @@ const Menu = (props) => {
     const data = await promiseAll.map((data) => data.json());
     const final = Promise.all(data);
     final.then((el) => props.setData(el));
+    final.then((rem) => {
+      let sum = 0;
+      for (let i = 0; i < rem.length; i++) {
+        sum += rem[i].results.length;
+      }
+      props.setOpenCount(sum);
+    });
+
     props.startGame();
   };
 

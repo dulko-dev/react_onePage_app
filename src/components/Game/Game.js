@@ -9,18 +9,31 @@ const Game = () => {
   const [score, setScore] = useState(0);
   const [player, setPlayer] = useState("");
   const [data, setData] = useState("");
+  const [openCount, setOpenCount] = useState(0);
 
   const startGame = () => {
     setWelcomeScreen(false);
   };
-  
+
   return (
     <div className={styles.game}>
       <Home />
       {welcomeScreen ? (
-        <Menu startGame={startGame} setPlayer={setPlayer} setData={setData} />
+        <Menu
+          startGame={startGame}
+          setPlayer={setPlayer}
+          setData={setData}
+          setOpenCount={setOpenCount}
+        />
       ) : (
-        <Live score={score} setScore={setScore} player={player} data={data} />
+        <Live
+          score={score}
+          setScore={setScore}
+          player={player}
+          data={data}
+          setOpenCount={setOpenCount}
+          openCount={openCount}
+        />
       )}
     </div>
   );

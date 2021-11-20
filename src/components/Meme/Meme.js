@@ -33,6 +33,8 @@ const Meme = () => {
 
     // wrapped text or limit of words
     
+
+    // save pic on the computer with text
     const marginY = height / 9;
     const fontSize = Math.floor(height / 10);
 

@@ -115,3 +115,25 @@
   color: #ffffff;
   text-align: center;
 }
+
+.modalWindow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 500px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: #ffffff;
+}
+
+.modalWindow h4 {
+  text-align: center;
+}
+
+.modalWindow div  {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}

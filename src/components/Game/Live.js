@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../style/Live.module.css";
 
-const Game = ({ score, setScore, player, data }) => {
+const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
   const [column, setColumn] = useState("");
   const [row, setRow] = useState("");
   const [takeScore, setTakeScore] = useState("");
@@ -10,8 +10,6 @@ const Game = ({ score, setScore, player, data }) => {
     second: "",
     minute: "",
   });
-
-  console.log(data);
 
   const matrix = (e) => {
     setColumn(e.target.dataset.column);
@@ -30,7 +28,6 @@ const Game = ({ score, setScore, player, data }) => {
       if (e.target.style.background === "green") {
         e.target.disabled = true;
         e.target.nextElementSibling.disabled = true;
-        setActive(!active);
       }
     } else {
       e.target.style.background = "red";
@@ -38,9 +35,10 @@ const Game = ({ score, setScore, player, data }) => {
       if (e.target.style.background === "red") {
         e.target.disabled = true;
         e.target.nextElementSibling.disabled = true;
-        setActive(!active);
       }
     }
+    setActive(!active);
+    setOpenCount(openCount - 1);
   };
 
   const badcolumn = (e) => {
@@ -53,7 +51,6 @@ const Game = ({ score, setScore, player, data }) => {
         e.target.disabled = true;
         e.target.previousElementSibling.disabled = true;
       }
-      setActive(!active);
     } else {
       e.target.style.background = "red";
       setScore(score - Number(takeScore));
@@ -61,8 +58,9 @@ const Game = ({ score, setScore, player, data }) => {
         e.target.disabled = true;
         e.target.previousElementSibling.disabled = true;
       }
-      setActive(!active);
     }
+    setActive(!active);
+    setOpenCount(openCount - 1);
   };
 
   function escapeHtml(text) {
@@ -131,7 +129,7 @@ const Game = ({ score, setScore, player, data }) => {
                       </p>
                     </div>
                     <p>{escapeHtml(question.question)}</p>
-                    {console.log(question)}
+
                     <button onClick={goodcolumn}>True</button>
                     <button onClick={badcolumn}>False</button>
                   </>
@@ -164,7 +162,6 @@ const Game = ({ score, setScore, player, data }) => {
                       </p>
                     </div>
                     <p>{escapeHtml(question.question)}</p>
-                    {console.log(question)}
                     <button onClick={goodcolumn}>True</button>
                     <button onClick={badcolumn}>False</button>
                   </>
@@ -197,7 +194,6 @@ const Game = ({ score, setScore, player, data }) => {
                       </p>
                     </div>
                     <p>{escapeHtml(question.question)}</p>
-                    {console.log(question)}
                     <button onClick={goodcolumn}>True</button>
                     <button onClick={badcolumn}>False</button>
                   </>
@@ -230,7 +226,6 @@ const Game = ({ score, setScore, player, data }) => {
                       </p>
                     </div>
                     <p>{escapeHtml(question.question)}</p>
-                    {console.log(question)}
                     <button onClick={goodcolumn}>True</button>
                     <button onClick={badcolumn}>False</button>
                   </>
@@ -240,6 +235,18 @@ const Game = ({ score, setScore, player, data }) => {
           </div>
         </div>
       </div>
+      {openCount === 0 && (
+        <div className={styles.modalWindow}>
+          <div style={{position:'relative'}}>
+            <h4>Thank you for playing game {player}</h4>
+            <p>you score is {score}</p>
+            <div>
+              <button>Restart</button>
+              <button>Quit</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
