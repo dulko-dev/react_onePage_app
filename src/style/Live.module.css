@@ -131,7 +131,7 @@
   text-align: center;
 }
 
-.modalWindow div  {
+.modalWindow div div {
   position: absolute;
   bottom: 0;
   left: 50%;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "../../style/Live.module.css";
 
 const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
@@ -6,10 +7,21 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
   const [row, setRow] = useState("");
   const [takeScore, setTakeScore] = useState("");
   const [active, setActive] = useState(true);
+  const [startGame, setStartGame] = useState(false);
   const [time, setTime] = useState({
-    second: "",
-    minute: "",
+    second: 0,
+    minute: 0,
   });
+
+  const history = useHistory();
+
+  const menu = () => {
+    history.push("/");
+  };
+  
+  const restart = () => {
+    window.location.reload();
+  };
 
   const matrix = (e) => {
     setColumn(e.target.dataset.column);
@@ -17,7 +29,23 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
     e.target.style.display = "none";
     setTakeScore(e.target.children[0].innerText);
     setActive(!active);
+    setStartGame(true);
   };
+
+  useEffect(() => {
+    if (startGame == true) {
+      const setInt = setInterval(() => {
+        if (time.second === 60) {
+          setTime((prev) => ({ ...prev, second: 0, minute: time.minute + 1 }));
+        } else {
+          setTime((prev) => ({ ...prev, second: time.second + 1 }));
+        }
+      }, 1000);
+      return () => {
+        clearInterval(setInt);
+      };
+    }
+  }, [time.second, startGame]);
 
   const goodcolumn = (e) => {
     e.preventDefault();
@@ -39,6 +67,9 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
     }
     setActive(!active);
     setOpenCount(openCount - 1);
+    if (openCount === 1) {
+      setStartGame(false);
+    }
   };
 
   const badcolumn = (e) => {
@@ -61,6 +92,9 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
     }
     setActive(!active);
     setOpenCount(openCount - 1);
+    if (openCount === 1) {
+      setStartGame(false);
+    }
   };
 
   function escapeHtml(text) {
@@ -78,7 +112,11 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
         <div>
           {player} : {score}
         </div>
-        <div>time: 00:00</div>
+        <div>
+          time: {time.minute < 10 ? "0" : ""}
+          {time.minute}:{time.second < 10 ? "0" : ""}
+          {time.second}
+        </div>
       </div>
       <div className={styles.gameContent}>
         <div className={styles.categoryContent}>
@@ -237,12 +275,17 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
       </div>
       {openCount === 0 && (
         <div className={styles.modalWindow}>
-          <div style={{position:'relative'}}>
+          <div style={{ position: "relative" }}>
             <h4>Thank you for playing game {player}</h4>
-            <p>you score is {score}</p>
+            <p>Score = {score}</p>
+            <p>
+              Time = {time.minute < 10 ? "0" : ""}
+              {time.minute}min {time.second < 10 ? "0" : ""}
+              {time.second}sec
+            </p>
             <div>
-              <button>Restart</button>
-              <button>Quit</button>
+              <button onClick={restart}>Restart</button>
+              <button onClick={menu}>Quit</button>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import styles from "../../style/Game.module.css";
 const Game = () => {
   const [welcomeScreen, setWelcomeScreen] = useState(true);
   const [score, setScore] = useState(0);
-  const [player, setPlayer] = useState("");
+  const [player, setPlayer] = useState("defaultName");
   const [data, setData] = useState("");
   const [openCount, setOpenCount] = useState(0);
 
