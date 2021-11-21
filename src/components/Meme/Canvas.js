@@ -9,7 +9,7 @@ const Canvas = () => {
 
   return {
     canvas,
-    renderCanvas: <canvas id="canvas"></canvas>,
+    renderCanvas: <canvas style={{width:'100%', height:'100%'}} id="canvas"></canvas>,
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "../Home";
 import Canvas from "./Canvas";
 import styles from "../../style/Meme.module.css";
@@ -21,22 +21,23 @@ const Meme = () => {
     });
   };
 
+  useEffect(() => {
+    if (canvas.getContext) {
+      canvasImage(inputText.top, inputText.bottom, canvas, image);
+    }
+  }, [inputText.top, inputText.bottom]);
+
   const canvasImage = (top, bottom, canvas, image) => {
     const containerCanvas = document.getElementById("containerCanvas");
-
+    setImage(image);
     const ctx = canvas.getContext("2d");
     const height = containerCanvas.clientHeight;
     const width = containerCanvas.clientWidth;
     canvas.width = width;
     canvas.height = height;
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-    // wrapped text or limit of words
-    
-
-    // save pic on the computer with text
     const marginY = height / 9;
-    const fontSize = Math.floor(height / 10);
+    const fontSize = 60;
 
     ctx.fillStyle = "black";
     ctx.strokeStyle = "white";
@@ -57,6 +58,16 @@ const Meme = () => {
     setInputText((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    const image = e.target.previousSibling;
+    const element = document.createElement("a");
+    element.download = "download.png";
+    element.href = image.toDataURL();
+    element.click();
+    element.remove();
+  };
+
   return (
     <div className={styles.meme}>
       <Home />
@@ -73,6 +84,7 @@ const Meme = () => {
                 value={inputText.top}
                 onChange={handleInput}
                 name="top"
+                maxLength={10}
               />
               <label htmlFor="bottomText">Bottom Label Text</label>
               <input
@@ -80,6 +92,7 @@ const Meme = () => {
                 name="bottom"
                 value={inputText.bottom}
                 onChange={handleInput}
+                maxLength={10}
               />
               <div className={styles.changeColor}>
                 {/* configuration for text color height and position */}
@@ -89,6 +102,7 @@ const Meme = () => {
         </div>
         <div id="containerCanvas" className={styles.imageCanvas}>
           {renderCanvas}
+          <button onClick={handleSave}>Save Files</button>
         </div>
       </div>
     </div>
