@@ -1,18 +1,28 @@
 import React from "react";
 import styles from "../../style/Welcome.module.css";
 
-const Welcome = () => {
+const Welcome = ({ setIcons, icons }) => {
+  
+  const brightness = (e) => {
+    setIcons(!icons);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <p>Hi there! &#9995; &#128513;</p>
-        <p>
-          &#128073; On the left hand you can find and test them my four
-          applications
-        </p>
-        <p>&#128073; If you wanna get touch with me please check last icon</p>
-        <p>I hope you will enjoy it! &#9996;</p>
-        <p>Live long and prosper &#128406;</p>
+        <p>&#128513; &#9995; Hi there! &#9995; &#128513;</p>
+        <ul className={styles.list}>
+          <div className={styles.firstTwoIcons}>
+            <li onMouseEnter={brightness} onMouseLeave={brightness}>
+              On the left hand you can find and test them my four applications
+            </li>
+            <li>If you wanna get touch with me please check last icon</li>
+          </div>
+          <div className={styles.lastTwoIcons}>
+            <li>I hope you will enjoy it!</li>
+            <li>Live long and prosper </li>
+          </div>
+        </ul>
       </div>
     </div>
   );

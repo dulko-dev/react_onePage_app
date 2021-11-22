@@ -1,3 +1,13 @@
+@keyframes pulse {
+  0%,
+  100% {
+    font-size: 1em;
+  }
+  50% {
+    font-size: 2em;
+  }
+}
+
 .nav {
   height: 100vh;
   width: 100px;
@@ -27,4 +37,10 @@
 
 .home {
   display: flex;
+}
+
+.haha {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }

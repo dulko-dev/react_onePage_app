@@ -7,7 +7,8 @@ import { FaGamepad } from "react-icons/fa";
 import { BsChatRightText, BsCardImage } from "react-icons/bs";
 import { SiAboutdotme } from "react-icons/si";
 
-const Home = () => {
+const Home = ({ icons }) => {
+  console.log(icons);
   return (
     <div className={styles.home}>
       <IconContext.Provider
@@ -19,23 +20,22 @@ const Home = () => {
       >
         <nav className={styles.nav}>
           <Link to="/location">
-            <GoLocation />
+            <GoLocation className={icons ? styles.haha : undefined} />
           </Link>
           <Link to="/game">
-            <FaGamepad />
+            <FaGamepad className={icons ? styles.haha : undefined} />
           </Link>
           <Link to="/speech">
-            <BsChatRightText />
+            <BsChatRightText className={icons ? styles.haha : undefined} />
           </Link>
           <Link to="/meme">
-            <BsCardImage />
+            <BsCardImage className={icons ? styles.haha : undefined} />
           </Link>
           <Link to="/about">
             <SiAboutdotme />
           </Link>
         </nav>
       </IconContext.Provider>
-   
     </div>
   );
 };

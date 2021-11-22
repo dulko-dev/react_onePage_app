@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import "normalize.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../Home";
@@ -10,13 +10,16 @@ import Speech from "../Speech";
 import Welcome from "../Welcome";
 
 const App = () => {
+  const [icons, setIcons] = useState(false);
+
+
   return (
     <Router>
       <Switch>
         <Route exact path="/">
           <div style={{ display: "flex" }}>
-            <Home />
-            <Welcome />
+            <Home icons={icons} />
+            <Welcome setIcons={setIcons} icons={icons} />
           </div>
         </Route>
         <Route path="/location" component={Location} />
