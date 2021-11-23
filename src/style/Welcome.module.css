@@ -29,6 +29,7 @@
 
 .content .lastTwoIcons {
   text-align: center;
+  position: relative;
 }
 
 li {
@@ -43,25 +44,32 @@ li {
   left: 0;
 }
 
-.lastTwoIcons li:first-child::before {
-  content: "✌️";
-  position: absolute;
-  transform: rotateY(180deg);
-  left: 0;
-}
-.lastTwoIcons li:first-child::after {
-  content: "✌️";
-  position: absolute;
-  right: 0;
-}
 .lastTwoIcons li:last-child::before {
   content: "🖖";
   position: absolute;
   transform: rotateY(180deg);
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .lastTwoIcons li:last-child::after {
   content: "🖖";
   position: absolute;
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lastTwoIcons::after {
+  content: "...Leonard Nimoy [1931-2015]";
+  position: absolute;
+  right: -60px;
+  bottom: -20px;
+  font-size: 0.5em;
+}
+
+.meIcon {
+  color: #f47a00;
+  margin: auto;
+  padding: 0 10px;
 }

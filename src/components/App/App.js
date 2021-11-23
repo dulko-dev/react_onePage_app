@@ -10,16 +10,13 @@ import Speech from "../Speech";
 import Welcome from "../Welcome";
 
 const App = () => {
-  const [icons, setIcons] = useState(false);
-
-
   return (
     <Router>
       <Switch>
         <Route exact path="/">
           <div style={{ display: "flex" }}>
-            <Home icons={icons} />
-            <Welcome setIcons={setIcons} icons={icons} />
+            <Home />
+            <Welcome />
           </div>
         </Route>
         <Route path="/location" component={Location} />
