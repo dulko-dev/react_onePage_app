@@ -16,6 +16,13 @@ const Home = () => {
     card: false,
     about: false,
   });
+  const [showArrow, setShowArrow] = useState({
+    location: false,
+    game: false,
+    chat: false,
+    card: false,
+    about: false,
+  });
   const locationPath = useLocation();
 
   useEffect(() => {
@@ -57,35 +64,82 @@ const Home = () => {
               className={
                 selectedIcon.location ? styles.orderIcon : styles.unOrderIcon
               }
+              onMouseEnter={() => setShowArrow({ location: true })}
+              onMouseLeave={() => setShowArrow({ location: false })}
             />
+            <div
+              className={
+                showArrow.location
+                  ? styles.modalLocation
+                  : styles.modalLocaionNan
+              }
+            >
+              <p className={styles.modalName}>Location</p>
+            </div>
           </Link>
           <Link to="/game">
             <FaGamepad
               className={
                 selectedIcon.game ? styles.orderIcon : styles.unOrderIcon
               }
+              onMouseEnter={() => setShowArrow({ game: true })}
+              onMouseLeave={() => setShowArrow({ game: false })}
             />
+            <div
+              className={
+                showArrow.game ? styles.modalLocation : styles.modalLocaionNan
+              }
+            >
+              <p className={styles.modalName}>Game</p>
+            </div>
           </Link>
           <Link to="/speech">
             <BsChatRightText
               className={
                 selectedIcon.chat ? styles.orderIcon : styles.unOrderIcon
               }
+              onMouseEnter={() => setShowArrow({ chat: true })}
+              onMouseLeave={() => setShowArrow({ chat: false })}
             />
+            <div
+              className={
+                showArrow.chat ? styles.modalLocation : styles.modalLocaionNan
+              }
+            >
+              <p className={styles.modalName}>Voice</p>
+            </div>
           </Link>
           <Link to="/meme">
             <BsCardImage
               className={
                 selectedIcon.card ? styles.orderIcon : styles.unOrderIcon
               }
+              onMouseEnter={() => setShowArrow({ card: true })}
+              onMouseLeave={() => setShowArrow({ card: false })}
             />
+            <div
+              className={
+                showArrow.card ? styles.modalLocation : styles.modalLocaionNan
+              }
+            >
+              <p className={styles.modalName}>Text</p>
+            </div>
           </Link>
           <Link to="/about">
             <SiAboutdotme
               className={
                 selectedIcon.about ? styles.orderIcon : styles.unOrderIcon
               }
+              onMouseEnter={() => setShowArrow({ about: true })}
+              onMouseLeave={() => setShowArrow({ about: false })}
             />
+            <div
+              className={
+                showArrow.about ? styles.modalLocation : styles.modalLocaionNan
+              }
+            >
+              <p className={styles.modalName}>About Me</p>
+            </div>
           </Link>
         </nav>
       </IconContext.Provider>
