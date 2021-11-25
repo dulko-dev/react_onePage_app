@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "normalize.css";
+import styles from '../../style/App.module.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../Home";
 import Location from "../Location";
@@ -14,7 +15,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/">
-          <div style={{ display: "flex" }}>
+          <div className={styles.mainContent}>
             <Home />
             <Welcome />
           </div>

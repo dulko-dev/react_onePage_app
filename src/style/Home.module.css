@@ -1,3 +1,6 @@
+:root {
+  --backgroundNav: #485696;
+}
 @keyframes pulse {
   0%,
   100% {
@@ -13,13 +16,17 @@
   }
 }
 
+.home {
+  position: relative;
+}
+
 .nav {
   height: 100vh;
   width: 100px;
   position: relative;
   left: 0;
   top: 0;
-  background-color: #485696;
+  background-color: var(--backgroundNav);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -44,13 +51,10 @@
   transition: opacity 0.5s;
 }
 
-.home {
-  display: flex;
-}
-
 .orderIcon {
   position: absolute;
   border-radius: 50%;
+  font-size: 2.5em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -63,6 +67,7 @@
 .unOrderIcon {
   position: absolute;
   border-radius: 50%;
+  font-size: 2.5em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -75,7 +80,7 @@
 .modalLocation {
   width: 125px;
   height: 50px;
-  background-color: #485696;
+  background-color: var(--backgroundNav);
   border-radius: 5px;
   position: absolute;
   top: 50%;
@@ -87,7 +92,7 @@
   justify-content: right;
   visibility: visible;
   opacity: 1;
-  z-index:2;
+  z-index: 2;
   clip-path: polygon(
     40% 0%,
     40% 20%,
@@ -100,7 +105,6 @@
   transition: visibility 0s, opacity 0.4s linear;
 }
 
-
 .modalLocaionNan {
   visibility: hidden;
   opacity: 0;
@@ -108,5 +112,108 @@
 
 .modalName {
   color: #c5c5c5;
- padding-right: 10px;
+  padding-right: 10px;
+}
+
+.burgerMenuContent {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.burger {
+  width: 35px;
+  height: 5px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  z-index: 2;
+  transition: all 0.4s ease-in-out;
+}
+
+.burgerOpen {
+  background-color: transparent;
+  transition: all 0.4s ease-in-out;
+  width: 35px;
+  height: 5px;
+  z-index: 2;
+}
+
+.burgerOpen::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  background-color: #ffffff;
+  transform: rotate(45deg) translate(5px, 15px);
+  transition: all 0.4s ease-in-out;
+  width: 35px;
+  height: 5px;
+  z-index: 2;
+}
+.burgerOpen::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  background-color: #ffffff;
+  transform: rotate(-45deg) translate(5px, -15px);
+  transition: all 0.4s ease-in-out;
+  width: 35px;
+  height: 5px;
+  z-index: 2;
+}
+
+.burger::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 35px;
+  height: 5px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: all 0.4s ease-in-out;
+}
+.burger::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  width: 35px;
+  height: 5px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: all 0.4s ease-in-out;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    width: 70px;
+  }
+  .orderIcon,
+  .unOrderIcon {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav {
+    height: 100px;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: -100%;
+    background-color: var(--backgroundNav);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .burgerMenuContent {
+    visibility: visible;
+  }
 }

@@ -23,6 +23,7 @@ const Home = () => {
     card: false,
     about: false,
   });
+  const [burgerClick, setBurgerClick] = useState(false);
   const locationPath = useLocation();
 
   useEffect(() => {
@@ -47,12 +48,18 @@ const Home = () => {
     }
   }, []);
 
+  const handleClick = () => {
+    setBurgerClick(!burgerClick);
+  }
+
   return (
     <div className={styles.home}>
+      <div className={styles.burgerMenuContent} onClick={handleClick}>
+        <div className={!burgerClick ? styles.burger : styles.burgerOpen}></div>
+      </div>
       <IconContext.Provider
         value={{
           color: "#F6F7EB",
-          size: "2.5em",
           style: {
             cursor: "pointer",
           },
