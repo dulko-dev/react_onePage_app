@@ -92,21 +92,13 @@ li {
     right: 10px;
   }
 }
-@media (max-width: 500px) {
-  .content {
-    font-size: 1.1em;
-  }
-}
-@media (max-width: 500px) {
-  .content {
-    font-size: 1.1em;
-  }
-
-}
 
 @media (max-width: 400px) {
   .lastTwoIcons {
     display: none;
+  }
+  .content {
+    font-size: 1.3em;
   }
 }
 
@@ -115,6 +107,9 @@ li {
     display: none;
   }
   .content {
-    font-size: 0.8em;
+    font-size: 1em;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

@@ -50,12 +50,16 @@ const Home = () => {
 
   const handleClick = () => {
     setBurgerClick(!burgerClick);
-  }
+  };
 
   return (
     <div className={styles.home}>
-      <div className={styles.burgerMenuContent} onClick={handleClick}>
-        <div className={!burgerClick ? styles.burger : styles.burgerOpen}></div>
+      <div className={`${styles.burgerMenuContainer} ${burgerClick && styles.burgerMenuContainerOpen}`}>
+        <div className={styles.burgerMenuContent} onClick={handleClick}>
+          <div
+            className={!burgerClick ? styles.burger : styles.burgerOpen}
+          ></div>
+        </div>
       </div>
       <IconContext.Provider
         value={{
@@ -65,7 +69,7 @@ const Home = () => {
           },
         }}
       >
-        <nav className={styles.nav}>
+        <nav className={`${styles.nav} ${burgerClick && styles.navActive}`}>
           <Link to="/location">
             <GoLocation
               className={
