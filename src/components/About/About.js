@@ -11,7 +11,7 @@ const About = () => {
   return (
     <div className={styles.about}>
       <Home />
-      <div className={styles.content}>
+      <div className={styles.contentAbout}>
         <div className={styles.contentCard}>
           <div className={styles.card}>
             <div className={`${styles.front} ${styles.frontAbout}`}>

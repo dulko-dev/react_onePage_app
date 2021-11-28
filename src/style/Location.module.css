@@ -47,10 +47,10 @@
 }
 
 .information {
-  width: 600px;
-  max-width: 100%;
+  max-width: 600px;
   position: relative;
   padding-top: 150px;
+  padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -87,11 +87,11 @@
 
 .generate {
   text-align: center;
-  padding-top:20px;
+  padding-top: 20px;
 }
 
 .generate .time {
-  font-size:1.3em;
+  font-size: 1.3em;
 }
 
 .map {
@@ -99,6 +99,107 @@
   height: 100%;
 }
 
-.ol-control .ol-hidden{
+.ol-control .ol-hidden {
   visibility: hidden;
+}
+
+@media (max-width: 1400px) {
+  .infoBlock {
+    padding-left: 30px;
+    font-size: 1em;
+  }
+  .infoBlock p {
+    width: 100px;
+    margin-right: 50px;
+  }
+  .information h2 {
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .btn {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    width: 100%;
+  }
+  .buttonLocation {
+    width: 100%;
+    height: 50%;
+  }
+  .mapDiv {
+    width: 100%;
+    height: 50%;
+  }
+  .information {
+    padding-top: 50px;
+    column-count: 2;
+    height: 300px;
+    padding-right: 0;
+  }
+  .information h2 {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .infoBlock:nth-of-type(1),
+  .infoBlock:nth-of-type(2),
+  .infoBlock:nth-of-type(3),
+  .infoBlock:nth-of-type(4),
+  .information .generate {
+    display: none;
+  }
+  .information {
+    column-count: auto;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .information span {
+    width: 100%;
+  }
+  .infoBlock {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .infoBlock {
+    flex-direction: column;
+    display: block;
+    padding-right: 30px;
+  }
+  .infoBlock p,
+  .infoBlock span {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-right: 0;
+  }
+  .btn {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-height: 800px) {
+  .information {
+    padding-top: 50px;
+  }
+  .content {
+    height: 100%;
+    width: 100%;
+  }
+  .mapDiv {
+    height: 100vh;
+  }
+  .information .generate {
+    display: none;
+  }
 }

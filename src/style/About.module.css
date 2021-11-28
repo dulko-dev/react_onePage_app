@@ -12,7 +12,7 @@
   background: linear-gradient(to right, #928dab, #1f1c2c);
 }
 
-.content {
+.contentAbout {
   display: flex;
   justify-content: space-between;
   align-items: center;

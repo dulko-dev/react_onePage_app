@@ -103,7 +103,7 @@ li {
 }
 
 @media (max-width: 270px) {
-  p:first-of-type {
+  .content p {
     display: none;
   }
   .content {
@@ -111,5 +111,21 @@ li {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+@media (max-height: 600px) {
+  .content {
+    top: 20%;
+    transform: translate(-50%, -20%);
+  }
+  .lastTwoIcons {
+    display: none;
+  }
+  .list {
+    margin: 0;
+  }
+  .container {
+    overflow: hidden;
   }
 }

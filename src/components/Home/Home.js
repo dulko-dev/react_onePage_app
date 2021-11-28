@@ -54,7 +54,11 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <div className={`${styles.burgerMenuContainer} ${burgerClick && styles.burgerMenuContainerOpen}`}>
+      <div
+        className={`${styles.burgerMenuContainer} ${
+          burgerClick && styles.burgerMenuContainerOpen
+        }`}
+      >
         <div className={styles.burgerMenuContent} onClick={handleClick}>
           <div
             className={!burgerClick ? styles.burger : styles.burgerOpen}
@@ -75,8 +79,12 @@ const Home = () => {
               className={
                 selectedIcon.location ? styles.orderIcon : styles.unOrderIcon
               }
-              onMouseEnter={() => setShowArrow({ location: true })}
-              onMouseLeave={() => setShowArrow({ location: false })}
+              onMouseEnter={() =>
+                setShowArrow(window.innerWidth > 500 && { location: true })
+              }
+              onMouseLeave={() =>
+                setShowArrow(window.innerWidth > 500 && { location: false })
+              }
             />
             <div
               className={
@@ -93,8 +101,12 @@ const Home = () => {
               className={
                 selectedIcon.game ? styles.orderIcon : styles.unOrderIcon
               }
-              onMouseEnter={() => setShowArrow({ game: true })}
-              onMouseLeave={() => setShowArrow({ game: false })}
+              onMouseEnter={() =>
+                setShowArrow(window.innerWidth > 500 && { game: true })
+              }
+              onMouseLeave={() =>
+                setShowArrow(window.innerWidth > 500 && { game: false })
+              }
             />
             <div
               className={
@@ -109,8 +121,12 @@ const Home = () => {
               className={
                 selectedIcon.chat ? styles.orderIcon : styles.unOrderIcon
               }
-              onMouseEnter={() => setShowArrow({ chat: true })}
-              onMouseLeave={() => setShowArrow({ chat: false })}
+              onMouseEnter={() =>
+                setShowArrow(window.innerWidth > 500 && { chat: true })
+              }
+              onMouseLeave={() =>
+                setShowArrow(window.innerWidth > 500 && { chat: false })
+              }
             />
             <div
               className={
@@ -125,8 +141,12 @@ const Home = () => {
               className={
                 selectedIcon.card ? styles.orderIcon : styles.unOrderIcon
               }
-              onMouseEnter={() => setShowArrow({ card: true })}
-              onMouseLeave={() => setShowArrow({ card: false })}
+              onMouseEnter={() =>
+                setShowArrow(window.innerWidth > 500 && { card: true })
+              }
+              onMouseLeave={() =>
+                setShowArrow(window.innerWidth > 500 && { card: false })
+              }
             />
             <div
               className={
@@ -141,8 +161,12 @@ const Home = () => {
               className={
                 selectedIcon.about ? styles.orderIcon : styles.unOrderIcon
               }
-              onMouseEnter={() => setShowArrow({ about: true })}
-              onMouseLeave={() => setShowArrow({ about: false })}
+              onMouseEnter={() =>
+                setShowArrow(window.innerWidth > 500 && { about: true })
+              }
+              onMouseLeave={() =>
+                setShowArrow(window.innerWidth > 500 && { about: false })
+              }
             />
             <div
               className={

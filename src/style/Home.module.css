@@ -207,7 +207,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 500px), (min-width:501px) and (max-height:600px){
   .nav {
     height: 70px;
     width: 100vw;
@@ -232,16 +232,15 @@
   }
 }
 
+
 @media (max-width: 270px) {
   .modalLocation {
     display: none;
   }
-
   .orderIcon,
   .unOrderIcon {
     font-size: 0.9em;
   }
-
   .burger,
   .burger::after,
   .burger::before,
@@ -252,3 +251,4 @@
     height: 2.5px;
   }
 }
+
