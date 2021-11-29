@@ -11,11 +11,15 @@ const Meme = () => {
     top: "",
     bottom: "",
   });
+  const [imageName, setImageName] = useState("Upload an image");
 
   const addObject = (e) => {
-    const url = URL.createObjectURL(e.target.files[0]);
-    setImage((image.src = url));
-
+    let url;
+    if (e.target.files[0]) {
+      url = URL.createObjectURL(e.target.files[0]);
+      setImage((image.src = url));
+      setImageName(e.target.files[0].name);
+    }
     image.addEventListener("load", function () {
       canvasImage(inputText.top, inputText.bottom, canvas, image);
     });
@@ -71,37 +75,50 @@ const Meme = () => {
   return (
     <div className={styles.meme}>
       <Home />
-      <div className={styles.container}>
+      <div className={styles.containerMeme}>
         <div className={styles.contentText}>
           <div className={styles.setupCanvas}>
             <h2>Create your own MEME</h2>
             <form>
-              <label htmlFor="imageFiles">Load image</label>
-              <input type="file" id="imageFiles" onChange={addObject} />
-              <label htmlFor="topText">Top Label Text</label>
-              <input
-                id="topText"
-                value={inputText.top}
-                onChange={handleInput}
-                name="top"
-                maxLength={10}
-              />
-              <label htmlFor="bottomText">Bottom Label Text</label>
-              <input
-                id="bottomText"
-                name="bottom"
-                value={inputText.bottom}
-                onChange={handleInput}
-                maxLength={10}
-              />
-              <div className={styles.changeColor}>
-                {/* configuration for text color height and position */}
+              <div className={styles.inputField}>
+                <label htmlFor="imageFiles">Load image</label>
+                <input
+                  type="file"
+                  id="imageFiles"
+                  onChange={addObject}
+                  accept="image/*"
+                />
+                <p>{imageName.slice(0,16)}</p>
+              </div>
+              <div className={styles.inputField}>
+                <label htmlFor="topText">Top Label Text</label>
+                <input
+                  type="text"
+                  id="topText"
+                  autoComplete="off"
+                  value={inputText.top}
+                  onChange={handleInput}
+                  name="top"
+                  maxLength={10}
+                />
+              </div>
+              <div className={styles.inputField}>
+                <label htmlFor="bottomText">Bottom Label Text</label>
+                <input
+                  type="text"
+                  id="bottomText"
+                  autoComplete="off"
+                  name="bottom"
+                  value={inputText.bottom}
+                  onChange={handleInput}
+                  maxLength={10}
+                />
               </div>
             </form>
           </div>
         </div>
         <div id="containerCanvas" className={styles.imageCanvas}>
-          {renderCanvas}
+          {renderCanvas} 
           <button onClick={handleSave}>Save Files</button>
         </div>
       </div>
