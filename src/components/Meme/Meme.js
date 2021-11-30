@@ -11,7 +11,7 @@ const Meme = () => {
     top: "",
     bottom: "",
   });
-  const [imageName, setImageName] = useState("Upload an image");
+  const [imageName, setImageName] = useState("Name of uploaded image");
 
   const addObject = (e) => {
     let url;
@@ -88,7 +88,6 @@ const Meme = () => {
                   onChange={addObject}
                   accept="image/*"
                 />
-                <p>{imageName.slice(0,16)}</p>
               </div>
               <div className={styles.inputField}>
                 <label htmlFor="topText">Top Label Text</label>
@@ -117,9 +116,12 @@ const Meme = () => {
             </form>
           </div>
         </div>
-        <div id="containerCanvas" className={styles.imageCanvas}>
-          {renderCanvas} 
-          <button onClick={handleSave}>Save Files</button>
+        <div className={styles.canvasContent}>
+          <p>{imageName.slice(0, 22)}</p>
+          <div id="containerCanvas" className={styles.imageCanvas}>
+            {renderCanvas}
+            <button onClick={handleSave} className={styles.memeBtn}>Save Files</button>
+          </div>
         </div>
       </div>
     </div>

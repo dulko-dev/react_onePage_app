@@ -1,5 +1,6 @@
 .meme {
   display: flex;
+  overflow-y: auto;
   width: 100%;
   height: 100vh;
   background: #536976;
@@ -8,6 +9,7 @@
 }
 
 .containerMeme {
+  height: 100%;
   width: calc(100vw - 100px);
   display: flex;
   justify-content: space-between;
@@ -66,13 +68,6 @@ input[type="file"]:hover {
   cursor: pointer;
 }
 
-input[type="file"] + p {
-  width: 30%;
-  text-align: center;
-  margin: 0;
-  align-self: center;
-}
-
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
@@ -94,12 +89,176 @@ input[type="text"]:focus {
   transition: all 1s ease-in-out;
 }
 
+.canvasContent {
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.canvasContent p {
+  font-size: 1.2em;
+  color: #c5c5c5;
+}
+
 .imageCanvas {
-  margin: auto;
-  width: 40%;
-  height: 65vh;
+  margin: 0 auto;
+  width: 400px;
+  height: 55vh;
   -webkit-box-shadow: 0px 0px 27px 3px rgba(66, 68, 90, 1);
   -moz-box-shadow: 0px 0px 27px 3px rgba(66, 68, 90, 1);
   box-shadow: 0px 0px 27px 3px rgba(66, 68, 90, 1);
-  text-align: center;
+}
+
+.memeBtn {
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  background: #c5c5c5;
+  transition: background 0.4s;
+}
+
+.memeBtn:hover {
+  transition: background 0.4s;
+  background: transparent;
+  color: #c5c5c5;
+  border: 1px solid #c5c5c5;
+  cursor: pointer;
+}
+
+@media (max-width: 1300px) {
+  .setupCanvas h2 {
+    font-size: 1.5em;
+  }
+  label {
+    font-size: 1.3em;
+    width: 60%;
+  }
+  input[type="file"]::before {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .containerMeme {
+    flex-direction: column;
+  }
+  .contentText {
+    width: 100%;
+    height: 40%;
+  }
+  .setupCanvas {
+    margin: 80px 0 20px 0;
+  }
+  .canvasContent {
+    height: 60%;
+    width: 100%;
+    padding-top: 0;
+  }
+  .imageCanvas {
+    height: calc(100% * 3 / 4);
+    width: 340px;
+  }
+  .memeBtn {
+    padding: 7.5px 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .containerMeme {
+    width: calc(100vw - 70px);
+  }
+}
+
+@media (max-width: 600px) {
+  .setupCanvas h2 {
+    font-size: 1.2em;
+  }
+  label {
+    font-size: 1em;
+    width: 70%;
+  }
+  input[type="file"]::before {
+    font-size: 0.6em;
+  }
+  .canvasContent p {
+    font-size: 1em;
+  }
+  input {
+    width: 60%;
+  }
+}
+
+@media (max-width: 500px) {
+  .containerMeme {
+    width: 100%;
+  }
+  .canvasContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .imageCanvas {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 350px) {
+  .inputField,
+  input {
+    display: block;
+  }
+  .inputField {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  input[type="file"] {
+    width: 100%;
+  }
+  label {
+    padding-left: 0;
+  }
+  input {
+    width: 100%;
+    padding-top: 10px;
+  }
+  .canvasContent {
+    margin-top: 50px;
+    height: 50%;
+  }
+}
+
+@media (max-width: 200px) {
+  .canvasContent {
+    margin-top: 100px;
+    height: 40%;
+  }
+  .containerMeme {
+    justify-content: center;
+  }
+  .setupCanvas {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .memeBtn {
+    padding: 4px 10px;
+  }
+}
+
+@media (max-height: 600px) {
+  .containerMeme {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) and (max-height: 700px) {
+  .containerMeme {
+    height: 700px;
+  }
+  /* .canvasContent {
+    height: 400px;
+    max-height: 100%;
+  } */
 }
