@@ -51,7 +51,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-.card:hover {
+.cardHover {
   transform: rotateY(180deg);
 }
 
@@ -71,6 +71,7 @@
   left: 50%;
   margin: 0;
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .front.frontSkill {

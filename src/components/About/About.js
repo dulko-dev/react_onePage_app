@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Home from "../Home";
 import styles from "../../style/About.module.css";
 import arrowDown from "../../asset/down-arrow.png";
@@ -8,12 +8,52 @@ import { icons } from "./icons";
 import { projects } from "./projects";
 
 const About = () => {
+  const [showCard, setShowCard] = useState({
+    about: false,
+    skills: false,
+    projects: false,
+  });
+
+  const aboutRef = useRef();
+  const skillsRef = useRef();
+  const projectRef = useRef();
+
+  useEffect(() => {
+    const checked = (e) => {
+      if (aboutRef.current && aboutRef.current.contains(e.target)) {
+        setShowCard((prev) => ({ ...prev, about: true }));
+      } else {
+        setShowCard((prev) => ({ ...prev, about: false }));
+      }
+
+      if (skillsRef.current && skillsRef.current.contains(e.target)) {
+        setShowCard((prev) => ({ ...prev, skills: true }));
+      } else {
+        setShowCard((prev) => ({ ...prev, skills: false }));
+      }
+
+      if (projectRef.current && projectRef.current.contains(e.target)) {
+        setShowCard((prev) => ({ ...prev, projects: true }));
+      } else {
+        setShowCard((prev) => ({ ...prev, projects: false }));
+      }
+    };
+    window.addEventListener("click", checked);
+    return () => {
+      window.removeEventListener("click", checked);
+    };
+  }, []);
+
   return (
     <div className={styles.about}>
       <Home />
       <div className={styles.contentAbout}>
         <div className={styles.contentCard}>
-          <div className={styles.card}>
+          <div
+            ref={aboutRef}
+            className={`${styles.card} ${showCard.about && styles.cardHover} `}
+            // onClick={clicked}
+          >
             <div className={`${styles.front} ${styles.frontAbout}`}>
               <p>About me</p>
             </div>
@@ -53,7 +93,11 @@ const About = () => {
           </div>
         </div>
         <div className={styles.contentCard}>
-          <div className={styles.card}>
+          <div
+            ref={skillsRef}
+            className={`${styles.card} ${showCard.skills && styles.cardHover} `}
+            // onClick={clicked}
+          >
             <div className={`${styles.front} ${styles.frontSkill}`}>
               <p>Skills</p>
             </div>
@@ -73,7 +117,13 @@ const About = () => {
           </div>
         </div>
         <div className={styles.contentCard}>
-          <div className={styles.card}>
+          <div
+            ref={projectRef}
+            className={`${styles.card} ${
+              showCard.projects && styles.cardHover
+            } `}
+            // onClick={clicked}
+          >
             <div className={`${styles.front} ${styles.frontSpareTime}`}>
               <p>Projects</p>
             </div>
