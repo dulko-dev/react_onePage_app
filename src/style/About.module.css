@@ -6,6 +6,9 @@
 }
 
 .about {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
   position: relative;
   background: #1f1c2c;
   background: -webkit-linear-gradient(to right, #928dab, #1f1c2c);
@@ -16,18 +19,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  left: calc(50% + 50px);
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 600px;
-  width: 90vw;
+  height: 100%;
+  width: calc(100vw - 100px);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .contentCard {
   position: relative;
   width: 33%;
-  height: 100%;
+  height: 600px;
   perspective: 1000px;
 }
 
@@ -59,6 +60,7 @@
   background-image: url("../asset/about.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-x: 10%;
 }
 
 .front p {
@@ -84,7 +86,7 @@
   background-image: url("../asset/hobby.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: 10%;
+  background-position-x: 30%;
 }
 
 .back {
@@ -112,17 +114,18 @@
   top: 0;
   right: 0;
   bottom: 0;
+
   background-color: rgba(255, 255, 255, 0.5);
   z-index: -1;
 }
 
 .back_content {
   width: 100%;
-  height: 60%;
+  height: 100%;
   position: relative;
   display: grid;
   grid-template-columns: 10% repeat(3, 1fr) 10%;
-  grid-template-rows: 2fr auto;
+  grid-template-rows: 50% 50%;
   justify-items: center;
 }
 
@@ -352,5 +355,149 @@ a span {
 
   50% {
     transform: translateY(0%);
+  }
+}
+
+@media (max-width: 1400px) {
+  .contentAbout {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contentCard {
+    height: 30%;
+    width: 100%;
+    perspective: 2000px;
+  }
+  .contentCard:not(:last-child) {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .front.frontAbout {
+    background-position-y: 30%;
+  }
+  .front.frontSkill {
+    background-position-y: 70%;
+  }
+  .front.frontSpareTime {
+    background-position-y: 70%;
+  }
+  .titleIcon {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+  }
+  .iconsContent {
+    margin: 0;
+  }
+  .iconImage {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contentAbout {
+    width: calc(100% - 70px);
+  }
+}
+
+@media (max-width: 800px) {
+  .back_content {
+    grid-template-columns: 10% repeat(3, 1fr) 10%;
+    grid-template-rows: 50% 50%;
+  }
+  .back_content h2 {
+    font-size: 1.88em;
+  }
+  .back_content a {
+    font-size: 3em;
+  }
+  a span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .titleIcon {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+  .iconsContent {
+    margin: 0;
+  }
+  .iconImage {
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+  }
+  .iconImage span {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .contentAbout {
+    width: 100%;
+  }
+  .front p {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .back_content h2 {
+    font-size: 1.5em;
+  }
+  .back_content a {
+    font-size: 2.5em;
+  }
+  a span {
+    font-size: 15px;
+  }
+}
+@media (max-width: 250px) {
+  .front p {
+    font-size: 1.2em;
+  }
+  .back {
+    overflow-y: auto;
+  }
+  .titleIcon {
+    margin-bottom: 10px;
+    font-size: 1em;
+  }
+ 
+  .iconImage {
+    width: 24px;
+    height: 24px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 200px) {
+  .back_content a {
+    font-size: 2em;
+  }
+  a span {
+    font-size: 12px;
+  }
+  .back_content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .back_content h2 {
+    font-size: 1.1em;
+    grid-column: auto;
+    grid-row: 1/2;
+  }
+  .back_content a:first-of-type {
+    grid-row: 2/3;
+    grid-column: auto;
+  }
+  .back_content a:nth-of-type(2) {
+    grid-row: 3/4;
+    grid-column: auto;
+  }
+  .back_content a:last-of-type {
+    grid-row: 4/5;
+    grid-column: auto;
   }
 }

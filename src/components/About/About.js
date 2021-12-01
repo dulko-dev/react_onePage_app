@@ -52,14 +52,13 @@ const About = () => {
           <div
             ref={aboutRef}
             className={`${styles.card} ${showCard.about && styles.cardHover} `}
-            // onClick={clicked}
           >
             <div className={`${styles.front} ${styles.frontAbout}`}>
               <p>About me</p>
             </div>
             <div className={styles.back}>
               <div className={styles.back_content}>
-                <h2>You can catch me here</h2>
+                <h2>Where can you catch me</h2>
                 <a
                   href="https://linkedin.com/in/kamil-duliniec"
                   alt="linkedin"
@@ -96,7 +95,6 @@ const About = () => {
           <div
             ref={skillsRef}
             className={`${styles.card} ${showCard.skills && styles.cardHover} `}
-            // onClick={clicked}
           >
             <div className={`${styles.front} ${styles.frontSkill}`}>
               <p>Skills</p>
@@ -122,7 +120,6 @@ const About = () => {
             className={`${styles.card} ${
               showCard.projects && styles.cardHover
             } `}
-            // onClick={clicked}
           >
             <div className={`${styles.front} ${styles.frontSpareTime}`}>
               <p>Projects</p>
