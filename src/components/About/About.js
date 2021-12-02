@@ -136,29 +136,35 @@ const About = () => {
                         </li>
                       ))}
                     </ul>
-                    <a href={project.href} target="_blank" rel="noreferrer">
-                      <button className={styles.btn}>DEMO</button>
+
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.btn}
+                    >
+                      DEMO
+                      <div
+                        className={styles.downArrowRight}
+                        style={
+                          project.title === "Flag Countries"
+                            ? { display: "none" }
+                            : { display: "block" }
+                        }
+                      >
+                        <img alt="arrow down" src={arrowDown} />
+                      </div>
+                      <div
+                        className={styles.downArrowLeft}
+                        style={
+                          project.title === "Flag Countries"
+                            ? { display: "none" }
+                            : { display: "block" }
+                        }
+                      >
+                        <img alt="arrow down" src={arrowDown} />
+                      </div>
                     </a>
-                    <div
-                      className={styles.downArrowRight}
-                      style={
-                        project.title === "Flag Countries"
-                          ? { display: "none" }
-                          : { display: "block" }
-                      }
-                    >
-                      <img alt="arrow down" src={arrowDown} />
-                    </div>
-                    <div
-                      className={styles.downArrowLeft}
-                      style={
-                        project.title === "Flag Countries"
-                          ? { display: "none" }
-                          : { display: "block" }
-                      }
-                    >
-                      <img alt="arrow down" src={arrowDown} />
-                    </div>
                   </div>
                 );
               })}

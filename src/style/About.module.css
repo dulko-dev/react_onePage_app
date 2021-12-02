@@ -252,6 +252,7 @@ a span {
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
@@ -259,8 +260,69 @@ a span {
   background-color: transparent;
 }
 
+.projectContent_simple {
+  position: relative;
+  scroll-snap-align: start;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.projectContent_simple ul span {
+  display: inline-block;
+  width: 250px;
+  text-align: left;
+}
+
+.projectContent_simple a {
+  outline: none;
+  text-decoration: none;
+  color: #000000;
+}
+
+.projectContent_simple h3 {
+  margin: 0;
+  padding-top: 40px;
+  font-size: 3em;
+  text-align: center;
+}
+
+.projectContent_simple ul {
+  text-align: center;
+  padding-left: 80px;
+}
+
+.projectContent_simple ul li {
+  font-size: 1.5em;
+  list-style: none;
+  padding-top: 15px;
+  letter-spacing: 1.2px;
+  background: url("../asset/right-arrow.png") no-repeat left center;
+  background-size: 0.8em;
+  padding-left: 30px;
+}
+
+.downArrowRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  animation-name: downward;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.downArrowLeft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation-name: downward;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 .btn {
-  padding: 10px 15px;
+  padding: 10px 25px;
   display: inline-block;
   border-radius: 10px;
   cursor: pointer;
@@ -277,65 +339,6 @@ a span {
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
   transition: all 0.4s linear;
-}
-
-.projectContent_simple ul span {
-  display: inline-block;
-  width: 250px;
-  text-align: start;
-}
-
-.projectContent_simple a {
-  outline: none;
-  text-decoration: none;
-  color: #000000;
-}
-
-.projectContent_simple h3 {
-  margin: 0;
-  font-size: 3em;
-  text-align: center;
-  padding-top: 75px;
-}
-
-.projectContent_simple ul {
-  text-align: center;
-  padding-left: 80px;
-}
-
-.projectContent_simple ul li {
-  font-size: 1.5em;
-  list-style-position: outside;
-  padding-top: 15px;
-  list-style-image: url("../asset/right-arrow.png");
-  letter-spacing: 1.2px;
-}
-
-.projectContent_simple {
-  position: relative;
-  scroll-snap-align: start;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.downArrowRight {
-  position: absolute;
-  bottom: 5%;
-  right: 10%;
-  animation-name: downward;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.downArrowLeft {
-  position: absolute;
-  bottom: 5%;
-  left: 10%;
-  animation-name: downward;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 
 @keyframes elevator {
@@ -357,6 +360,8 @@ a span {
     transform: translateY(0%);
   }
 }
+
+/* media queries */
 
 @media (max-width: 1400px) {
   .contentAbout {
@@ -393,6 +398,42 @@ a span {
     width: 48px;
     height: 48px;
   }
+  .projectContent_simple {
+    width: 100%;
+    display: flex;
+  }
+
+  .projectContent_simple h3 {
+    padding-left: 20px;
+    font-size: 2.2em;
+    margin-right: 100px;
+    padding-top: 0;
+    align-self: center;
+  }
+
+  .projectContent_simple ul {
+    margin: auto 0;
+    padding-left: 0px;
+    max-height: 100%;
+  }
+
+  .projectContent_simple ul span {
+    display: inline;
+    max-width: 0;
+    text-align: left;
+  }
+
+  .projectContent_simple ul li {
+    padding-top: 10px;
+    font-size: 1.2em;
+    text-align: left;
+  }
+
+  .btn {
+    transform: translateX(0);
+    font-size: 1.8em;
+    left: 70%;
+  }
 }
 
 @media (max-width: 900px) {
@@ -415,6 +456,10 @@ a span {
   a span {
     font-size: 18px;
   }
+  .btn {
+    font-size: 1.5em;
+    left: 20px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -435,6 +480,12 @@ a span {
   }
 }
 
+@media (max-width: 600px) {
+  .projectContent_simple {
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+}
 @media (max-width: 500px) {
   .contentAbout {
     width: 100%;
@@ -452,7 +503,78 @@ a span {
   a span {
     font-size: 15px;
   }
+  .projectContent_simple h3 {
+    margin-right: 0px;
+  }
 }
+
+@media (max-width: 400px) {
+  .projectContent_simple h3 {
+    font-size: 1.4em;
+    padding-left: 10px;
+  }
+  .projectContent_simple ul span {
+    font-size: 0.8em;
+  }
+  .projectContent_simple ul li {
+    background-size: 0.5em;
+  }
+  .btn {
+    font-size: 0.8em;
+    padding: 0;
+    padding-bottom: 2px;
+    background-color: transparent;
+    color: #ffffff !important;
+    bottom: 60%;
+    left: 25%;
+    transform: translateX(-50%);
+  }
+  .btn:hover {
+    background-color: transparent;
+    transition: all 1s;
+  }
+  .btn:hover::after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    bottom: 0;
+    height: 2px;
+    background-color: #ffffff;
+    width: 100%;
+  }
+  .btn:hover::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    bottom: 0;
+    height: 2px;
+    background-color: #ffffff;
+    width: 100%;
+  }
+  .downArrowLeft,
+  .downArrowRight {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 300px) {
+  .projectContent_simple {
+    flex-direction: column;
+  }
+  .btn {
+    padding-right: 5px;
+    padding-top:5px;
+    right:0;
+    top:0;
+    transform: none;
+    left: unset;
+    bottom: unset;
+  }
+  .projectContent_simple h3 {
+    padding-top:20px;
+  }
+}
+
 @media (max-width: 250px) {
   .front p {
     font-size: 1.2em;
@@ -464,7 +586,7 @@ a span {
     margin-bottom: 10px;
     font-size: 1em;
   }
- 
+
   .iconImage {
     width: 24px;
     height: 24px;

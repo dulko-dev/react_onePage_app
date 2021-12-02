@@ -20,7 +20,7 @@ export const projects = [
     href: "https://dulko-react-minigames.netlify.app",
   },
   {
-    title: "React Dashboard",
+    title: "Dashboard",
     tech: [
       "reactjs",
       "react-hook-form",
@@ -28,18 +28,12 @@ export const projects = [
       "firebase",
       "5x API",
       "SCSS",
-      "material UI",
     ],
     href: "https://dulko-dashboard.netlify.app/",
   },
   {
     title: "landing page",
-    tech: [
-      "reactjs",
-      "Intersection Observe",
-      "styled-components",
-      "flag API",
-    ],
+    tech: ["reactjs", "Intersection Observe", "styled-components", "flag API"],
     href: "https://dulko-landing-page.netlify.app",
   },
   {
