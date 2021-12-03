@@ -563,15 +563,15 @@ a span {
   }
   .btn {
     padding-right: 5px;
-    padding-top:5px;
-    right:0;
-    top:0;
+    padding-top: 5px;
+    right: 0;
+    top: 0;
     transform: none;
     left: unset;
     bottom: unset;
   }
   .projectContent_simple h3 {
-    padding-top:20px;
+    padding-top: 20px;
   }
 }
 
@@ -621,5 +621,24 @@ a span {
   .back_content a:last-of-type {
     grid-row: 4/5;
     grid-column: auto;
+  }
+}
+
+@media (max-height: 600px) {
+  .contentAbout {
+    width: 100%;
+  }
+  .about {
+    overflow-y: auto;
+    height: 600px;
+  }
+  .contentCard {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1400px) and (max-height: 860px) {
+  .about {
+    height: 860px;
   }
 }
