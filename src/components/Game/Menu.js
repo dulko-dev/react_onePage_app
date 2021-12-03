@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa";
 import styles from "../../style/Menu.module.css";
 
 const Menu = (props) => {
@@ -71,6 +72,21 @@ const Menu = (props) => {
     setSelectCategories(selectCategories.filter((el) => el.value != category));
   };
 
+  const handleChangeInput = (e) => {
+    props.setPlayer(e.target.value);
+  };
+
+  const handleFocusInput = (e) => {
+    const label = e.target.previousSibling;
+    label.style.color = "#4a0095";
+    label.style.transition = "color .4s";
+  };
+
+  const handleBlurInput = (e) => {
+    const label = e.target.previousSibling;
+    label.style.color = "#c1c1c1";
+  };
+
   return (
     <div className={styles.menu}>
       <div className={styles.menuSelect}>
@@ -80,17 +96,23 @@ const Menu = (props) => {
           <div className={styles.menuSelectContent}>
             <form>
               <h2>Test your knowledge</h2>
-              <label htmlFor="username"></label>
-              <input
-                type="text"
-                id="username"
-                onChange={(e) => props.setPlayer(e.target.value)}
-                placeholder="Enter your name"
-              />
+              <div className={styles.usernameInput}>
+                <label htmlFor="username">Your Name:</label>
+                <input
+                  autoComplete="off"
+                  spellCheck="false"
+                  type="text"
+                  id="username"
+                  maxLength="15"
+                  onChange={handleChangeInput}
+                  onFocus={handleFocusInput}
+                  onBlur={handleBlurInput}
+                />
+              </div>
               <div className={styles.selectOptions}>
                 <div className={styles.contentSelect}>
                   <select onChange={markCategory} value={selectValue}>
-                    <option>select categories</option>
+                    <option>Click for select category</option>
                     {categories &&
                       categories.map((category) => {
                         return (
@@ -110,12 +132,19 @@ const Menu = (props) => {
                 </button>
               </div>
               <div className={styles.poolQuestion}>
+                <p className={styles.remains}>
+                  Remains: <span>{4 - selectCategories.length}</span> category
+                  to begin the game
+                </p>
                 <ul>
                   {selectCategories.map((category) => (
                     <div className={styles.singleCategory} key={category.id}>
                       <li>{category.value}</li>
-                      <button onClick={(e) => handleRemove(e, category.value)}>
-                        del
+                      <button
+                        onClick={(e) => handleRemove(e, category.value)}
+                        className={styles.btnTrash}
+                      >
+                        <FaTrash />
                       </button>
                     </div>
                   ))}

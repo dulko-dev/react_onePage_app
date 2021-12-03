@@ -1,13 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
 .menu {
   width: 100%;
   align-self: center;
 }
 
 .menuSelect {
-  height: 80vh;
   margin: auto;
-  width: 600px;
-  background: black;
+  max-width: 600px;
+  background: #919191;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .menuSelectContent {
@@ -15,18 +19,54 @@
   height: 100%;
 }
 
-form {
+.menuSelectContent form {
   position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
+  color: #4a0095;
 }
 
-form h2 {
+.menuSelectContent form h2 {
+  font-family: "Patrick Hand", cursive;
   font-size: 1.5em;
+  align-self: center;
+  letter-spacing: 1.2px;
+}
+
+.usernameInput {
+  display: grid;
+  grid-template-columns: auto minmax(100px, 2fr);
+  grid-template-rows: 1fr;
+  margin: 20px 0;
+}
+
+.usernameInput label {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-size: 1.2em;
+  margin-right: 10px;
+  font-weight: 600;
+  justify-self: right;
   color: #c1c1c1;
-  text-align: center;
+}
+
+.usernameInput input {
+  box-sizing: border-box;
+  color: #4a0095;
+  grid-column: 2/3;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #c1c1c1;
+  margin-right: 20px;
+  transition: border-bottom 1s;
+}
+
+.usernameInput input:focus {
+  outline: none;
+  border-bottom: 0.4px solid #4a0095;
+  transition: border-bottom 1s;
 }
 
 .selectOptions {
@@ -38,23 +78,84 @@ form h2 {
   align-self: center;
 }
 
-select {
+.contentSelect select {
   width: 100%;
-  padding: 10px 0;
-  border: 0px;
+  border: 1px solid #c1c1c1;
+  border-right: none;
+  padding: 10px 0 10px 10px;
   outline: 0px;
+  cursor: pointer;
+  background-color: #919191;
+  color: #4a0095;
+}
+
+.contentSelect select option {
+  background-color: #919191;
   cursor: pointer;
 }
 
 .addButton {
+  background-color: #919191;
   padding: 10px 15px;
+  border: 1px solid #c1c1c1;
+  border-left: none;
+  transition: background-color 0.4s;
+  color: #4a0095;
+}
+
+.addButton:hover {
+  transition: background-color 0.4s;
+  background-color: #c1c1c1;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .poolQuestion {
+  overflow-y: auto;
+  position: relative;
+  margin-top: 50px;
+  border: none;
+  margin-bottom: 100px;
+  border-radius: 5px;
   width: 70%;
   height: 200px;
-  background-color: #eeeeee;
+  color: #ffa74f;
+  background-color: #fff;
   align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.poolQuestion .remains {
+  margin: 0;
+  position: absolute;
+  left: 5%;
+  top: 0;
+  color: #4a0095;
+  transform: translateY(-100%);
+}
+
+.poolQuestion .remains span {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.poolQuestion ul {
+  padding-left: 0;
+}
+
+.singleCategory .btnTrash {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding-left: 0;
+  transition: opacity 0.4s;
+}
+
+.singleCategory .btnTrash:hover {
+  transition: opacity 0.4s;
+  opacity: 0.6;
 }
 
 .singleCategory {
@@ -64,10 +165,7 @@ select {
 }
 
 .buttonBattle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  align-self: center;
   margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid transparent;
@@ -81,4 +179,71 @@ select {
   background-color: inherit;
   border: 1px solid #c1c1c1;
   transition: 0.4s all;
+}
+
+/* media queries */
+
+@media (max-width: 700px) {
+  .menuSelect {
+    margin: auto 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .menuSelectContent form h2 {
+    font-size: 1.3em;
+  }
+  .usernameInput label {
+    font-size: 1em;
+  }
+
+  .poolQuestion .remains {
+    text-align: center;
+  }
+
+  .poolQuestion .remains,
+  .poolQuestion ul {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 400px) {
+  .usernameInput,
+  .usernameInput label {
+    display: block;
+  }
+  .usernameInput label {
+    margin-right: 0;
+  }
+  .usernameInput input {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .selectOptions {
+    display: block;
+  }
+  .contentSelect {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  .contentSelect select {
+    border-right: 1px solid #c1c1c1;
+  }
+  .addButton {
+    display: block;
+    margin: 0 auto;
+    border-top: none;
+    border-left: 1px solid #c1c1c1;
+    transition: background-color 0.4s;
+    color: #4a0095;
+  }
+  .menuSelectContent form h2 {
+    font-size: 1em;
+    text-align: center;
+  }
+  .buttonBattle {
+    padding: 10px 25px;
+    transition: 0.4s all;
+  }
 }

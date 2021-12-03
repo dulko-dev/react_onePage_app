@@ -7,7 +7,7 @@ import styles from "../../style/Game.module.css";
 const Game = () => {
   const [welcomeScreen, setWelcomeScreen] = useState(true);
   const [score, setScore] = useState(0);
-  const [player, setPlayer] = useState("defaultName");
+  const [player, setPlayer] = useState("player");
   const [data, setData] = useState("");
   const [openCount, setOpenCount] = useState(0);
 
@@ -24,6 +24,7 @@ const Game = () => {
           setPlayer={setPlayer}
           setData={setData}
           setOpenCount={setOpenCount}
+          player ={player}
         />
       ) : (
         <Live

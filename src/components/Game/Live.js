@@ -110,7 +110,7 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
     <div className={styles.gameLive}>
       <div className={styles.infoUser}>
         <div>
-          {player} : {score}
+          {player === '' ? 'player' : player} : {score}
         </div>
         <div>
           time: {time.minute < 10 ? "0" : ""}

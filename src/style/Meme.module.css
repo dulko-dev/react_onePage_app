@@ -45,13 +45,13 @@
   margin-top: 20px;
 }
 
-label {
+.inputField label {
   width: 50%;
   padding-left: 40px;
   font-size: 1.7em;
 }
 
-input {
+.inputField input {
   width: 70%;
   background-color: transparent;
   border: none;
@@ -59,20 +59,20 @@ input {
   color: #c5c5c5;
 }
 
-input[type="file"] {
+.inputField input[type="file"] {
   position: relative;
   width: 40%;
 }
 
-input[type="file"]:hover {
+.inputField input[type="file"]:hover {
   cursor: pointer;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+.inputField input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
 
-input[type="file"]::before {
+.inputField input[type="file"]::before {
   content: "Click to select image";
   text-align: center;
   display: inline-block;
@@ -83,7 +83,7 @@ input[type="file"]::before {
   outline: none;
 }
 
-input[type="text"]:focus {
+.inputField input[type="text"]:focus {
   outline: none;
   border-bottom: 1px solid #ffa74f;
   transition: all 1s ease-in-out;
@@ -132,11 +132,11 @@ input[type="text"]:focus {
   .setupCanvas h2 {
     font-size: 1.5em;
   }
-  label {
+  .inputField label {
     font-size: 1.3em;
     width: 60%;
   }
-  input[type="file"]::before {
+  .inputField input[type="file"]::before {
     font-size: 0.8em;
   }
 }
@@ -176,17 +176,17 @@ input[type="text"]:focus {
   .setupCanvas h2 {
     font-size: 1.2em;
   }
-  label {
+  .inputField label {
     font-size: 1em;
     width: 70%;
   }
-  input[type="file"]::before {
+  .inputField input[type="file"]::before {
     font-size: 0.6em;
   }
   .canvasContent p {
     font-size: 1em;
   }
-  input {
+  .inputField input {
     width: 60%;
   }
 }
@@ -207,20 +207,20 @@ input[type="text"]:focus {
 
 @media (max-width: 350px) {
   .inputField,
-  input {
+  .inputField input {
     display: block;
   }
   .inputField {
     margin-left: 40px;
     margin-right: 40px;
   }
-  input[type="file"] {
+  .inputField input[type="file"] {
     width: 100%;
   }
-  label {
+  .inputField label {
     padding-left: 0;
   }
-  input {
+  .inputField input {
     width: 100%;
     padding-top: 10px;
   }
@@ -257,8 +257,4 @@ input[type="text"]:focus {
   .containerMeme {
     height: 700px;
   }
-  /* .canvasContent {
-    height: 400px;
-    max-height: 100%;
-  } */
 }
