@@ -164,6 +164,11 @@
   justify-content: space-between;
 }
 
+.singleCategory li {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
 .buttonBattle {
   align-self: center;
   margin-bottom: 20px;

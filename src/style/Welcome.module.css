@@ -33,7 +33,8 @@
   margin: 0 auto;
 }
 
-li {
+.firstTwoIcons li,
+.lastTwoIcons li {
   list-style-type: none;
   padding: 10px;
 }
