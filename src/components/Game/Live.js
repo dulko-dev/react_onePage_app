@@ -204,8 +204,12 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
                     </p>
                   </div>
                   <p>{escapeHtml(question.question)}</p>
-                  <button className={styles.btnLive} onClick={goodcolumn}>True</button>
-                  <button className={styles.btnLive} onClick={badcolumn}>False</button>
+                  <button className={styles.btnLive} onClick={goodcolumn}>
+                    True
+                  </button>
+                  <button className={styles.btnLive} onClick={badcolumn}>
+                    False
+                  </button>
                 </div>
               ))
             )}
@@ -234,8 +238,12 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
                     </p>
                   </div>
                   <p>{escapeHtml(question.question)}</p>
-                  <button className={styles.btnLive} onClick={goodcolumn}>True</button>
-                  <button className={styles.btnLive} onClick={badcolumn}>False</button>
+                  <button className={styles.btnLive} onClick={goodcolumn}>
+                    True
+                  </button>
+                  <button className={styles.btnLive} onClick={badcolumn}>
+                    False
+                  </button>
                 </div>
               ))
             )}
@@ -264,8 +272,12 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
                     </p>
                   </div>
                   <p>{escapeHtml(question.question)}</p>
-                  <button className={styles.btnLive} onClick={goodcolumn}>True</button>
-                  <button className={styles.btnLive} onClick={badcolumn}>False</button>
+                  <button className={styles.btnLive} onClick={goodcolumn}>
+                    True
+                  </button>
+                  <button className={styles.btnLive} onClick={badcolumn}>
+                    False
+                  </button>
                 </div>
               ))
             )}
@@ -276,12 +288,24 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
         <div className={styles.modalWindow}>
           <div style={{ position: "relative" }}>
             <h4>Thank you for playing game {player}</h4>
-            <p>Score = {score}</p>
-            <p>
-              Time = {time.minute < 10 ? "0" : ""}
-              {time.minute}min {time.second < 10 ? "0" : ""}
-              {time.second}sec
-            </p>
+            <div className={styles.modalScore}>
+              <p>
+                Your Score ={" "}
+                <span
+                  style={score >= 0 ? { color: "green" } : { color: "red" }}
+                >
+                  {score}
+                </span>
+              </p>
+              <p>
+                Time ={" "}
+                <span>
+                  {time.minute < 10 ? "0" : ""}
+                  {time.minute}:{time.second < 10 ? "0" : ""}
+                  {time.second}
+                </span>
+              </p>
+            </div>
             <div>
               <button onClick={restart}>Restart</button>
               <button onClick={menu}>Quit</button>

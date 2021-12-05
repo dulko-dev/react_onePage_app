@@ -14,6 +14,7 @@
   height: 100px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .infoUser div:first-child {
@@ -28,7 +29,7 @@
 
 .infoUser div:last-child span {
   display: inline-block;
-  width: 60px;
+  max-width: 60px;
   padding-left: 3px;
 }
 
@@ -101,10 +102,10 @@
 }
 
 .question:first-child {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .question:last-child {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .scoreBoard {
@@ -136,26 +137,56 @@
 .modalWindow {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 50px;
   width: 500px;
-  height: 300px;
-  transform: translate(-50%, -50%);
+  max-width: 100%;
+  transform: translate(-50%);
   background-color: black;
   color: #ffffff;
+}
+
+.modalWindow .modalScore {
+  border:1px solid #ffffff;
+  width: 50%;
+  margin:0 auto;
 }
 
 .modalWindow h4 {
   text-align: center;
 }
 
-.modalWindow div div {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.modalWindow p {
+  text-align: center;
 }
 
+.modalWindow div div {
+  position: relative;
+  text-align: center;
+}
+
+.modalWindow button {
+  padding:7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top:5px;
+}
+
+.modalScore span {
+  font-weight: 600;
+}
+
+.modalWindow button:first-child {
+  margin-right:5px;
+}
+
+
+/* media queries */
+
 @media (max-width: 900px) {
+  .infoUser {
+    width: calc(100vw - 70px);
+  }
   .category {
     font-size: 1em;
   }
@@ -172,6 +203,9 @@
     border: none;
     margin-bottom: 5px;
   }
+  .emptyQuestions p {
+    font-size: 1.5em;
+  }
 }
 
 @media (max-width: 600px) {
@@ -179,6 +213,57 @@
     margin-right: 0;
     display: block;
     margin: 0 auto;
-    margin-bottom:3px;
+    margin-bottom: 3px;
   }
+}
+
+@media (max-width: 500px) {
+  .gameLive {
+    overflow: auto;
+  }
+  .infoUser {
+    width: 100%;
+    font-size: 0.8em;
+  }
+  .infoUser div:first-child {
+    align-self: flex-end;
+    padding-left: 5px;
+  }
+
+  .infoUser div:last-child {
+    align-self: flex-end;
+    padding-right: 5px;
+  }
+  .gameContent {
+    max-width: unset;
+    width: 350px;
+  }
+  .categoryContent {
+    height: 125px;
+  }
+  .category {
+    font-size: 0.8em;
+    transform: rotate(-90deg);
+  }
+  .score {
+    font-size: 1.2em;
+  }
+  .question {
+    height: 100px;
+  }
+  .question > p {
+    font-size: 0.6em;
+  }
+  .emptyQuestions {
+    align-items: stretch;
+  }
+  .emptyQuestions p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width:200px){
+  .infoUser {
+    justify-content: center;
+}
 }
