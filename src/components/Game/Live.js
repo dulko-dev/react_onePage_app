@@ -40,7 +40,7 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
         } else {
           setTime((prev) => ({ ...prev, second: time.second + 1 }));
         }
-      }, 100);
+      }, 1000);
       return () => {
         clearInterval(setInt);
       };

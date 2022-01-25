@@ -58,7 +58,7 @@ const Speech = () => {
           <div className={styles.rightWing}>
             <div className={styles.rightContent}>
               <div className={styles.selected}>
-                <h3>Choose Voicer</h3>
+                <h3>Choose Voicer*</h3>
                 <select onChange={onChangeVoicer}>
                   {voices.length &&
                     voices.map((voice, index) => (
@@ -67,6 +67,17 @@ const Speech = () => {
                       </option>
                     ))}
                 </select>
+                <p className={styles.recommend}>
+                  *Recommend browser
+                  <a
+                    style={{ color: "inherit" }}
+                    href="https://www.google.com/intl/eng_eng/chrome/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    - Google Chrome
+                  </a>
+                </p>
               </div>
               <button className={styles.btn} onClick={getText}>
                 Read Text

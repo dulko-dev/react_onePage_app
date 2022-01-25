@@ -137,10 +137,6 @@ const Location = () => {
                 <p className={styles.probablyPlace}>your probably place</p>
                 <span className={styles.place}>{dataLocation.formatted}</span>
               </div>
-              <div className={styles.infoBlock}>
-                <p>strenght of confidence</p>
-                <span>{dataLocation.confidence}</span>
-              </div>
               <div className={styles.generate}>
                 <p>Generate at</p>
                 <span className={styles.time}>
