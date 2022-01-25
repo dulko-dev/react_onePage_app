@@ -33,19 +33,19 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
   };
 
   useEffect(() => {
-    if (startGame == true) {
+    if (startGame === true) {
       const setInt = setInterval(() => {
         if (time.second === 60) {
           setTime((prev) => ({ ...prev, second: 0, minute: time.minute + 1 }));
         } else {
           setTime((prev) => ({ ...prev, second: time.second + 1 }));
         }
-      }, 1000);
+      }, 100);
       return () => {
         clearInterval(setInt);
       };
     }
-  }, [time.second, startGame]);
+  }, [time.second, time.minute, startGame]);
 
   const goodcolumn = (e) => {
     e.preventDefault();
@@ -124,22 +124,22 @@ const Game = ({ score, setScore, player, data, openCount, setOpenCount }) => {
       <div className={styles.gameContent}>
         <div className={styles.categoryContent}>
           <div className={styles.category}>
-            {data && data[0].response_code == 0
+            {data && data[0].response_code === 0
               ? data[0].results[0].category
               : "None"}
           </div>
           <div className={styles.category}>
-            {data && data[1].response_code == 0
+            {data && data[1].response_code === 0
               ? data[1].results[0].category
               : "None"}
           </div>
           <div className={styles.category}>
-            {data && data[2].response_code == 0
+            {data && data[2].response_code === 0
               ? data[2].results[0].category
               : "None"}
           </div>
           <div className={styles.category}>
-            {data && data[3].response_code == 0
+            {data && data[3].response_code === 0
               ? data[3].results[0].category
               : "None"}
           </div>

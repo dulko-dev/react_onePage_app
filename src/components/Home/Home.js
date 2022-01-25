@@ -45,8 +45,9 @@ const Home = () => {
       case "/about":
         setSelectedIcon({ about: true });
         break;
+      default: // do nothing
     }
-  }, []);
+  }, [locationPath.pathname]);
 
   const handleClick = () => {
     setBurgerClick(!burgerClick);

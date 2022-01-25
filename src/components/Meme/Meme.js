@@ -29,6 +29,7 @@ const Meme = () => {
     if (canvas.getContext) {
       canvasImage(inputText.top, inputText.bottom, canvas, image);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText.top, inputText.bottom]);
 
   const canvasImage = (top, bottom, canvas, image) => {

@@ -69,7 +69,7 @@ const Menu = (props) => {
 
   const handleRemove = (event, category) => {
     event.preventDefault();
-    setSelectCategories(selectCategories.filter((el) => el.value != category));
+    setSelectCategories(selectCategories.filter((el) => el.value !== category));
   };
 
   const handleChangeInput = (e) => {
@@ -154,7 +154,7 @@ const Menu = (props) => {
                 type="button"
                 onClick={handleFetch}
                 className={styles.buttonBattle}
-                disabled={selectCategories.length != 4}
+                disabled={selectCategories.length !== 4}
               >
                 Battle
               </button>
