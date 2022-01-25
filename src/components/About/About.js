@@ -79,7 +79,7 @@ const About = () => {
                   <BsGithub />
                 </a>
                 <a
-                  href="https://dulko-dev.com"
+                  href="https://dulko-dev.pl"
                   alt="website"
                   target="_blank"
                   rel="noreferrer"
