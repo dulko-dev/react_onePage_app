@@ -73,8 +73,13 @@ const Location = () => {
         const { latitude, longitude } = pos.coords;
 
         setData({ date: setDate, clock: setTime });
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         await fetch(
-          `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
+          `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`,
+          { signal }
         )
           .then((data) => {
             if (data.ok) {
@@ -94,6 +99,7 @@ const Location = () => {
           e.target.setAttribute("disabled", true);
           e.target.innerText = "Done, enjoy it";
         }
+        controller.abort();
       }
     } else {
       e.target.innerText = "Your browser doesn't support geolocation";
