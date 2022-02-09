@@ -59,7 +59,7 @@ const Speech = () => {
             <div className={styles.rightContent}>
               <div className={styles.selected}>
                 <h3>Choose Voicer*</h3>
-                <select onChange={onChangeVoicer}>
+                <select style={{ width: "100%" }} onChange={onChangeVoicer}>
                   {voices.length &&
                     voices.map((voice, index) => (
                       <option key={index} value={voice.name}>
